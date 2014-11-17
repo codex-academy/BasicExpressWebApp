@@ -1,6 +1,8 @@
 #Introduction
 
-This is an example that shows the basics of how to create CRUD screens with NodeJS using EpxressJS and MySQL. CRUD stands for Create, Read, Update and Delete - this is the bread and butter of web application development. You use crud to manage all the data in your web application. Once data is stored it can be retrieved, updated, deleted or what ever your demanding cliet wants.
+This is an example that shows the basics of how to create CRUD screens with NodeJS using EpxressJS and MySQL. CRUD stands for Create, Read, Update and Delete - this is the bread and butter of web application development. 
+
+You use CRUD to manage all the data in your web application. Once data is stored it can be retrieved, updated, deleted or whatever your demanding cliet wants.
 
 I kept this example simple on purpose, but it can be used as the base of something much more complicated.
 
