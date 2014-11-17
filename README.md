@@ -6,6 +6,8 @@ You use CRUD to manage all the data in your web application. Once data is stored
 
 I kept this example simple on purpose, but it can be used as the base of something much more complicated.
 
+Fork this repo and clone it into a folder on your laptop and then follow these instructions.
+
 #Setup
 
 To run this example locally you will need to have installed
