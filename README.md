@@ -55,7 +55,7 @@ FLUSH PRIVILEGES;
 Once the database is created execute this SQL command in the database to create the products table.
 
 ```
-create table my_products.products (
+create table products (
 	id int not null auto_increment,
         description char(100),
         primary key(id)
