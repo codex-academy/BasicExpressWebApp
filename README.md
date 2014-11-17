@@ -23,8 +23,8 @@ You can use apt-get to install all of the above.
 Open a terminal window to check if you need to install node & npm, by trying to run these two commands.
 
 On Ubuntu to install node & npm use this commands:
-* sudo apg-get install nodejs-legacy
-* sudo apg-get install npm
+* sudo apt-get install nodejs-legacy
+* sudo apt-get install npm
 
 ##Install MySQL
 
