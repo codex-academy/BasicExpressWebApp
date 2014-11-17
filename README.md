@@ -48,6 +48,16 @@ CREATE USER green_grocer@localhost IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON my_products.* TO wordpressuser@localhost;
 FLUSH PRIVILEGES;
 ```
+Once the database is created execute this SQL command in the database to create the products table.
+
+```create table my_products.products (
+	id int not null auto_increment,
+        description char(100),
+        primary key(id)
+        
+);
+
+```
 
 Once done check if the table was create successfully. You can do that by running this sql command in the my_products database
 
