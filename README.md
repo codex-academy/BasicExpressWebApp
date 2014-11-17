@@ -52,7 +52,7 @@ FLUSH PRIVILEGES;
 ```
 
 
-Once the database is created execute this SQL command in the database to create the products table.
+Once the database is created execute this SQL command in the database to create the products table. Be sure to run this in the newly created my_products database.
 
 ```
 create table products (
