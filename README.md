@@ -49,7 +49,7 @@ To setup the database open a SQL window in PhpMyAdmin and run this sql:
 ```
 CREATE DATABASE my_products;
 CREATE USER green_grocer@localhost IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON my_products.* TO wordpressuser@localhost;
+GRANT ALL PRIVILEGES ON my_products.* TO green_grocer@localhost;
 FLUSH PRIVILEGES;
 ```
 
