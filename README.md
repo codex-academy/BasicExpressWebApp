@@ -77,7 +77,7 @@ Now you should be ready to run the application.
 
 Open a terminal window in the root of the CRUD application and type
 
-```sudo node npm install```
+```sudo npm install```
 
 This will install all the modules that the application depends on.
 
@@ -85,6 +85,8 @@ To start the application:
 
 ``` node index.js  ```
 
-If there were no errors open this http://localhost:3000 in a web browser and Create, Read, Update and Delete some products.
+If there were no errors open http://localhost:3000 in a web browser and Create, Read, Update and Delete some products.
 
 Use this as a basis for your own experiments, try to add more tables - link the tables together using SQL.
+
+The web pages use handlebar.js templates (http://handlebarsjs.com/) it's an extension of moustache (http://mustache.github.io/)
