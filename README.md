@@ -68,7 +68,7 @@ create table products (
 Once done check if the table was create successfully. You can do that by running this sql command in the my_products database
 
 ```
-select * from my products
+select * from products
 ```
 
 #Use it
