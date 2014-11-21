@@ -11,10 +11,10 @@ var app = express();
 
 var dbOptions = {
       host: 'localhost',
-      user: 'constructer',
+      user: 'green_grocer',
       password: 'password',
       port: 3306,
-      database: 'construct_me'
+      database: 'my_products'
 };
 
 //setup template handlebars as the template engine
