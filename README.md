@@ -40,6 +40,8 @@ Use these instructions to install it:
 
 https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu-14-04
 
+> If you have trouble running phpmyadmin locaclly after the installation it is most likely due to the fact that you didn't select the install options for Apache. When given the option to install to Apache config for phpmyadmin you need to select it explicitly using the spacebar. But all is not lost - reconfigure Apache and phpmyadmin by using this command ```sudo dpkg-reconfigure phpmyadmin``` on the command line. Be sure to select Apache this time around!
+
 ## Database setup
 
 Once you have all the above installed you need to setup a database.
