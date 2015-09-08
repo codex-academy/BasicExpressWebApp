@@ -1,8 +1,8 @@
 #Introduction
 
-This is an example that shows the basics of how to create CRUD screens with NodeJS using EpxressJS and MySQL. CRUD stands for Create, Read, Update and Delete - this is the bread and butter of web application development. 
+This is an example that shows the basics of how to create CRUD screens with NodeJS using ExpressJS and MySQL. CRUD stands for Create, Read, Update and Delete - this is the bread and butter of web application development.
 
-You use CRUD to manage all the data in your web application. Once data is stored it can be retrieved, updated, deleted or whatever your demanding cliet wants.
+You use CRUD to manage all the data in your web application. Once data is stored it can be retrieved, updated, deleted or whatever your demanding client wants.
 
 I kept this example simple on purpose, but it can be used as the base of something much more complicated.
 
@@ -13,14 +13,14 @@ Fork this repo and clone it into a folder on your laptop and then follow these i
 To run this example locally you will need to have installed
 * NodeJS
 * npm
-* MySql
-* A MySQL client - I recommend PHPMyAdmin
+* MySQL
+* A MySQL client - I recommend phpMyAdmin
 
 You can use apt-get to install all of the above.
 
 ##Node JS
 
-Open a terminal window to check if you need to install node & npm, by trying to run these two commands.
+Open a terminal window to check if you need to install node & npm by trying to run these two commands.
 
 On Ubuntu to install node & npm use this commands:
 * sudo apt-get install nodejs-legacy
@@ -32,21 +32,21 @@ Use these instructions to install MySQL & PHP on Ubuntu.
 
 https://www.digitalocean.com/community/tutorials/a-basic-mysql-tutorial
 
-## PhpMyAdmin
+## phpMyAdmin
 
-You need a tool to administer your database, we will use PhpMyAdmin for that. It's a web application that allows you to administer you database.
+You need a tool to administer your database. We will use phpMyAdmin for that. It's a web application that allows you to administer your database.
 
 Use these instructions to install it:
 
 https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu-14-04
 
-> If you have trouble running phpmyadmin locaclly after the installation it is most likely due to the fact that you didn't select the install options for Apache. When given the option to install to Apache config for phpmyadmin you need to select it explicitly using the spacebar. But all is not lost - reconfigure Apache and phpmyadmin by using this command ```sudo dpkg-reconfigure phpmyadmin``` on the command line. Be sure to select Apache this time around!
+> If you have trouble running phpMyAdmin locally after the installation it is most likely due to the fact that you didn't select the install options for Apache. When given the option to install to Apache config for phpMyAdmin you need to select it explicitly using the spacebar. But all is not lost - reconfigure Apache and phpMyAdmin by using this command ```sudo dpkg-reconfigure phpMyAdmin``` on the command line. Be sure to select Apache this time around!
 
 ## Database setup
 
 Once you have all the above installed you need to setup a database.
 
-To setup the database open a SQL window in PhpMyAdmin and run this sql:
+To setup the database open a SQL window in phpMyAdmin and run this SQL:
 
 ```
 CREATE DATABASE my_products;
@@ -63,11 +63,11 @@ create table products (
 	id int not null auto_increment,
         description char(100),
         primary key(id)
-        
+
 );
 ```
 
-Once done check if the table was create successfully. You can do that by running this sql command in the my_products database
+Once done check if the table was create successfully. You can do that by running this SQL command in the my_products database
 
 ```
 select * from products
@@ -91,4 +91,4 @@ If there were no errors open http://localhost:3000 in a web browser and Create, 
 
 Use this as a basis for your own experiments, try to add more tables - link the tables together using SQL.
 
-The web pages use handlebar.js templates (http://handlebarsjs.com/) it's an extension of moustache (http://mustache.github.io/)
+The web pages use handlebar.js templates (http://handlebarsjs.com/) it's an extension of mustache (http://mustache.github.io/)
