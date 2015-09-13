@@ -40,7 +40,10 @@ app.post('/products/add', products.add);
 //this should be a post but this is only an illustration of CRUD - not on good practices
 app.get('/products/delete/:id', products.delete);
 
+//configure the port number using and environment number
+var portNumber = process.env.CRUD_PORT_NR || 3000;
+
 //start everything up
-app.listen(3000, function () {
-    console.log('express-handlebars example server listening on: 3000');
+app.listen(portNumber, function () {
+    console.log('Create, Read, Update, and Delete (CRUD) example server listening on:', portNumber);
 });
