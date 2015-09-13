@@ -1,21 +1,11 @@
 <h1>Products</h1>
-
+<a href="/products/add">Add product</a>
 {{#products}}
   <h2>{{description}}</h2>
   <a href="/products/edit/{{id}}">Edit</a>
   <a href="/products/delete/{{id}}">Delete</a>
 {{/products}}
 
-{{#empty}}
-  <p>The list is empty.</p>
-{{/empty}}
-
-<div id="add-products">
-	
-	<h1>Add a product</h1>
-	<form action="products/add" method="POST">
-		Description: <input type="text" name="description">	
-		<input type="submit">
-	</form>
-</div>
-
+{{#no_products}}
+  <p>No products available yet. Add some above.</p>
+{{/no_products}}

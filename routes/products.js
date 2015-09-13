@@ -1,30 +1,38 @@
 
 /***
  * A very basic CRUD example using MySQL
- */	
+ */
 
 //todo - fix the error handling
 
 exports.show = function (req, res, next) {
 	req.getConnection(function(err, connection){
-		if (err) 
+		if (err)
 			return next(err);
+
 		connection.query('SELECT * from products', [], function(err, results) {
-        	if (err) return next(err);
+        if (err) return next(err);
 
     		res.render( 'home', {
-    			products : results
+					no_products : results.length === 0,
+					products : results,
+
     		});
+
       });
 	});
 };
 
+exports.showAdd = function(req, res){
+	res.render('add');
+}
+
 exports.add = function (req, res, next) {
 	req.getConnection(function(err, connection){
-		if (err){ 
+		if (err){
 			return next(err);
 		}
-		
+
 		var input = JSON.parse(JSON.stringify(req.body));
 		var data = {
             		description : input.description,
@@ -32,7 +40,7 @@ exports.add = function (req, res, next) {
 		connection.query('insert into products set ?', data, function(err, results) {
         		if (err)
               			console.log("Error inserting : %s ",err );
-         
+
           		res.redirect('/products');
       		});
 	});
@@ -45,8 +53,8 @@ exports.get = function(req, res, next){
 			if(err){
     				console.log("Error Selecting : %s ",err );
 			}
-			res.render('edit',{page_title:"Edit Customers - Node.js", data : rows[0]});      
-		}); 
+			res.render('edit',{page_title:"Edit Customers - Node.js", data : rows[0]});
+		});
 	});
 };
 
@@ -61,7 +69,7 @@ exports.update = function(req, res, next){
     			}
           		res.redirect('/products');
     		});
-    		
+
     });
 };
 
@@ -76,4 +84,3 @@ exports.delete = function(req, res, next){
 		});
 	});
 };
-
