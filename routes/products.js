@@ -78,9 +78,6 @@ exports.update = function(req, res, next){
 		description : req.body.description,
 		price : Number(req.body.price)
 	};
-
-	console.log(data);
-
   	var id = req.params.id;
   	req.getConnection(function(err, connection){
 		if (err) return next(err);
@@ -88,7 +85,6 @@ exports.update = function(req, res, next){
 			if (err) return next(err);
       		res.redirect('/products');
 		});
-
     });
 };
 
