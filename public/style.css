@@ -35,7 +35,7 @@ input[type=text], input[type=number] {
 	padding: 10px;
 	font-size: 20px;
 	display: block;
-	margin-top: 0.5em;	
+	margin-top: 0.5em;
 	margin-bottom: 1em;
 }
 
@@ -46,4 +46,17 @@ input[type=submit] {
 
 .field > label {
 	width: 10px;
+}
+
+#nav li {
+	display: inline;
+}
+
+#nav a:link,
+#nav a:visited {
+	color:#000;
+	background: dodgerblue;
+	padding: 1em 1em 1em 1em;
+	
+
 }
