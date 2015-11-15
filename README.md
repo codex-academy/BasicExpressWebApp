@@ -59,11 +59,17 @@ FLUSH PRIVILEGES;
 Once the database is created execute this SQL command in the database to create the products table. Be sure to run this in the newly created my_products database.
 
 ```
-create table products (
-	id int not null auto_increment,
-        description char(100),
-        primary key(id)
+create table categories(
+	id int primary key auto_increment,
+	description char(100) not null
+);
 
+create table products (
+	id int primary key auto_increment,
+    description char(100) not null,
+	price decimal(10,2),
+	category_id int,
+	foreign key (category_id) references categories(id)
 );
 ```
 

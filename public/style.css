@@ -19,7 +19,7 @@ body {
 	padding: 15px;
 }
 
-input[type=text] {
+input[type=text], input[type=number], input[type=select] {
 	margin: 10px;
 	padding: 10px;
 	font-size: 20px;
@@ -29,3 +29,7 @@ input[type=submit] {
 	padding: 13px;
   	border: 2px solid #000;
 };
+
+.field > label {
+	width: 10px;
+}

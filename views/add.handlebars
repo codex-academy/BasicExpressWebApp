@@ -1,6 +1,22 @@
 <h1>Add</h1>
 
 <form action="/products/add" method="POST">
-	Description: <input type="text" name="description" value="{{description}}">
+	<div class="">
+		Category:
+		<select class="" name="category_id">
+			{{#categories}}
+				<option value="{{id}}">{{description}}</option>
+			{{/categories}}
+		</select>
+	</div>
+
+	<div>
+		Description: <input type="text" name="description" value="{{description}}">
+	</div>
+
+	<div>
+		Amount: <input type="number" step="any" name="price" value="{{price}}">
+	</div>
+
 	<input type="submit">
 </form>

@@ -1,11 +1,11 @@
-<h1>Products</h1>
+<h1>Categories</h1>
 <a href="/categories/add">Add category</a>
 <a href="/products/add">Add product</a>
-{{#products}}
+{{#categories}}
   <h2>{{description}}</h2>
-  <a href="/products/edit/{{id}}">Edit</a>
-  <a href="/products/delete/{{id}}">Delete</a>
-{{/products}}
+  <a href="/categories/edit/{{id}}">Edit</a>
+  <a href="/categories/delete/{{id}}">Delete</a>
+{{/categories}}
 
 {{#no_products}}
   <p>No products available yet. Add some above.</p>

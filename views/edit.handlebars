@@ -1,8 +1,21 @@
 <h1>Edit</h1>
 
-{{#data}}
-<form action="/products/update/{{id}}" method="POST">
-	Description: <input type="text" name="description" value="{{description}}">	
+<form action="/products/update/{{data.id}}" method="POST">
+	<div class="">
+		Category:
+		<select class="" name="category_id">
+			{{#categories}}
+				<option {{selected}} value="{{id}}">{{description}}</option>
+			{{/categories}}
+		</select>
+	</div>
+	<div class="">
+		Description: <input type="text" name="description" value="{{data.description}}">
+		<input type="submit">
+	</div>
+	<div class="field">
+		<label for="price">Price:</label>
+		<input type="text" name="price" value="{{data.price}}">
+	</div>
 	<input type="submit">
 </form>
-{{/data}}
