@@ -44,7 +44,7 @@ https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmy
 
 ## Database setup
 
-Once you have all the above installed you need to setup a database.
+Once you have all the above installed you need to setup the database.
 
 To setup the database open a SQL window in phpMyAdmin and run this SQL:
 
@@ -55,10 +55,11 @@ GRANT ALL PRIVILEGES ON my_products.* TO green_grocer@localhost;
 FLUSH PRIVILEGES;
 ```
 
-
-Once the database is created execute this SQL command in the database to create the products table. Be sure to run this in the newly created my_products database.
+After creating the database execute this SQL command in the database to create the `categories` and `products` table. Be sure to run this in the newly created my_products database.
 
 ```
+use my_products;
+
 create table categories(
 	id int primary key auto_increment,
 	description char(100) not null
@@ -66,17 +67,19 @@ create table categories(
 
 create table products (
 	id int primary key auto_increment,
-    description char(100) not null,
+        description char(100) not null,
 	price decimal(10,2),
 	category_id int,
 	foreign key (category_id) references categories(id)
 );
 ```
 
-Once done check if the table was create successfully. You can do that by running this SQL command in the my_products database
+Now check if the tables were create successfully. You can do that by running this SQL command in the my_products database
 
 ```
-select * from products
+select * from categories;
+select * from products;
+
 ```
 
 #Use it
