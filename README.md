@@ -48,7 +48,7 @@ Once you have all the above installed you need to setup the database.
 
 To setup the database open a SQL window in phpMyAdmin and run this SQL:
 
-```
+```sql
 CREATE DATABASE my_products;
 CREATE USER green_grocer@localhost IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON my_products.* TO green_grocer@localhost;
@@ -57,7 +57,7 @@ FLUSH PRIVILEGES;
 
 After creating the database execute this SQL command to create the `categories` and `products` table. Be sure to run this in the newly created `my_products` database.
 
-```
+```sql
 use my_products;
 
 create table categories(
@@ -81,23 +81,20 @@ select * from categories;
 select * from products;
 ```
 
+> If you already have a products table and it doesn't have a category_id column, run this SQL to add it:
+```ALTER TABLE products ADD category_id INT;```
+
 #Use it
 
 Now you should be ready to run the application.
 
 Open a terminal window in the root of the CRUD application and type
 
-```
-sudo npm install
-```
+`sudo npm install `
 
 This will install all the modules that the application depends on.
 
-To start the application:
-
-```
-node index.js
-```
+To start the application: `node index.js`
 
 If there were no errors, open http://localhost:3000 in a web browser and Create, Read, Update and Delete some products.
 
