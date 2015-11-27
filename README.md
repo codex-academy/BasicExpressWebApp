@@ -55,7 +55,7 @@ GRANT ALL PRIVILEGES ON my_products.* TO green_grocer@localhost;
 FLUSH PRIVILEGES;
 ```
 
-After creating the database execute this SQL command in the database to create the `categories` and `products` table. Be sure to run this in the newly created my_products database.
+After creating the database execute this SQL command to create the `categories` and `products` table. Be sure to run this in the newly created `my_products` database.
 
 ```
 use my_products;
@@ -74,12 +74,11 @@ create table products (
 );
 ```
 
-Now check if the tables were create successfully. You can do that by running this SQL command in the my_products database
+Now check if the tables were create successfully. You can do that by running these SQL commands in the `my_products` database
 
 ```
 select * from categories;
 select * from products;
-
 ```
 
 #Use it
@@ -88,16 +87,20 @@ Now you should be ready to run the application.
 
 Open a terminal window in the root of the CRUD application and type
 
-```sudo npm install```
+```
+sudo npm install
+```
 
 This will install all the modules that the application depends on.
 
 To start the application:
 
-``` node index.js  ```
+```
+node index.js
+```
 
-If there were no errors open http://localhost:3000 in a web browser and Create, Read, Update and Delete some products.
+If there were no errors, open http://localhost:3000 in a web browser and Create, Read, Update and Delete some products.
 
-Use this as a basis for your own experiments, try to add more tables - link the tables together using SQL.
+Use this as a basis for your own experiments, try to add more tables. Link the tables together using SQL.
 
-The web pages use handlebar.js templates (http://handlebarsjs.com/) it's an extension of mustache (http://mustache.github.io/)
+The web pages use handlebar.js templates (http://handlebarsjs.com/), an extension of mustache (http://mustache.github.io/).
