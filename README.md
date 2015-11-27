@@ -82,7 +82,8 @@ select * from products;
 ```
 
 > If you already have a products table and it doesn't have a category_id column, run this SQL to add it:
-```ALTER TABLE products ADD category_id INT;```
+
+> ```ALTER TABLE products ADD category_id INT;```
 
 #Use it
 
