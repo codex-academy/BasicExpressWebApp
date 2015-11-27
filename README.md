@@ -100,4 +100,4 @@ If there were no errors, open http://localhost:3000 in a web browser and Create,
 
 Use this as a basis for your own experiments, try to add more tables. Link the tables together using SQL.
 
-The web pages use handlebar.js templates (http://handlebarsjs.com/), an extension of mustache (http://mustache.github.io/).
+The web pages use [handlebar.js templates](http://handlebarsjs.com/), an extension of [mustache](http://mustache.github.io/).
