@@ -44,34 +44,46 @@ https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmy
 
 ## Database setup
 
-Once you have all the above installed you need to setup a database.
+Once you have all the above installed you need to setup the database.
 
 To setup the database open a SQL window in phpMyAdmin and run this SQL:
 
-```
+```sql
 CREATE DATABASE my_products;
 CREATE USER green_grocer@localhost IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON my_products.* TO green_grocer@localhost;
 FLUSH PRIVILEGES;
 ```
 
+After creating the database execute this SQL command to create the `categories` and `products` table. Be sure to run this in the newly created `my_products` database.
 
-Once the database is created execute this SQL command in the database to create the products table. Be sure to run this in the newly created my_products database.
+```sql
+use my_products;
 
-```
+create table categories(
+	id int primary key auto_increment,
+	description char(100) not null
+);
+
 create table products (
-	id int not null auto_increment,
-        description char(100),
-        primary key(id)
-
+	id int primary key auto_increment,
+        description char(100) not null,
+	price decimal(10,2),
+	category_id int,
+	foreign key (category_id) references categories(id)
 );
 ```
 
-Once done check if the table was create successfully. You can do that by running this SQL command in the my_products database
+Now check if the tables were create successfully. You can do that by running these SQL commands in the `my_products` database
 
 ```
-select * from products
+select * from categories;
+select * from products;
 ```
+
+> If you already have a products table and it doesn't have a category_id column, run this SQL to add it:
+
+> ```ALTER TABLE products ADD category_id INT;```
 
 #Use it
 
@@ -79,16 +91,14 @@ Now you should be ready to run the application.
 
 Open a terminal window in the root of the CRUD application and type
 
-```sudo npm install```
+`sudo npm install `
 
 This will install all the modules that the application depends on.
 
-To start the application:
+To start the application: `node index.js`
 
-``` node index.js  ```
+If there were no errors, open http://localhost:3000 in a web browser and Create, Read, Update and Delete some products.
 
-If there were no errors open http://localhost:3000 in a web browser and Create, Read, Update and Delete some products.
+Use this as a basis for your own experiments, try to add more tables. Link the tables together using SQL.
 
-Use this as a basis for your own experiments, try to add more tables - link the tables together using SQL.
-
-The web pages use handlebar.js templates (http://handlebarsjs.com/) it's an extension of mustache (http://mustache.github.io/)
+The web pages use [handlebar.js templates](http://handlebarsjs.com/), an extension of [mustache](http://mustache.github.io/).
