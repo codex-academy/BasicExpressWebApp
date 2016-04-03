@@ -23,7 +23,7 @@ exports.showAdd = function(req, res){
 exports.add = function (req, res, next) {
 	req.getConnection(function(err, connection){
 		if (err) return next(err);
-		var input = JSON.parse(JSON.stringify(req.body));
+		var input = req.body;
 		var data = {
       		description : input.description,
   	};
@@ -48,7 +48,7 @@ exports.get = function(req, res, next){
 
 exports.update = function(req, res, next){
 
-	var data = JSON.parse(JSON.stringify(req.body));
+  var data = req.body;
   var id = req.params.id;
   req.getConnection(function(err, connection){
 			connection.query('UPDATE categories SET ? WHERE id = ?', [data, id], function(err, rows){
