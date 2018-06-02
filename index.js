@@ -68,7 +68,7 @@ app.get('/products/delete/:id', products.delete);
 app.use(errorHandler);
 
 //configure the port number using and environment number
-var portNumber = process.env.CRUD_PORT_NR || 3000;
+var portNumber = process.env.PORT || 3000;
 
 //start everything up
 app.listen(portNumber, function () {
