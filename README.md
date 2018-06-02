@@ -48,6 +48,34 @@ Once you have all the above installed you need to setup the database.
 
 To setup the database open a SQL window in phpMyAdmin and run this SQL:
 
+## PostgreSQL
+
+```sql
+
+createdb my_products;
+psql -d my_products;
+
+```
+
+```sql
+
+create table categories(
+	id serial not null primary key,
+	description char(100) not null
+);
+
+create table products (
+	id serial not null primary key,
+    description char(100) not null,
+	price decimal(10,2),
+	category_id int,
+	foreign key (category_id) references categories(id)
+);
+
+```
+
+## MySQL
+
 ```sql
 CREATE DATABASE my_products;
 CREATE USER green_grocer@localhost IDENTIFIED BY 'password';

@@ -1,70 +1,88 @@
 
 /***
- * A very basic CRUD example using MySQL
+ * A very basic CRUD example using PostgreSQL
  */
 
-exports.show = function (req, res, next) {
-	req.getConnection(function(err, connection){
-		if (err) return next(err);
-		connection.query('SELECT * from categories', [], function(err, results) {
-        if (err) return next(err);
-		res.render( 'categories', {
-				no_products : results.length === 0,
-				categories : results,
-		});
-      });
-	});
-};
+module.exports = function CategoryRoutes(pool) {
 
-exports.showAdd = function(req, res){
-	res.render('add_category');
-}
+	async function show(req, res, next) {
+		try {
+			let results = await pool.query('SELECT * from categories');
+			res.render('categories', {
+				no_products: results.length === 0,
+				categories: results.rows,
+			});
+		}
+		catch (err) {
+			next(err);
+		}
+	};
 
-exports.add = function (req, res, next) {
-	req.getConnection(function(err, connection){
-		if (err) return next(err);
-		var input = req.body;
-		var data = {
-      		description : input.description,
-  	};
+	function showAdd(req, res, next) {
+		res.render('add_category');
+	}
 
-	connection.query('insert into categories set ?', data, function(err, results) {
-			if (err) return next(err);
-		res.redirect('/categories');
-	});
-
-	});
-};
-
-exports.get = function(req, res, next){
-	var id = req.params.id;
-	req.getConnection(function(err, connection){
-		connection.query('SELECT * FROM categories WHERE id = ?', [id], function(err,rows){
-			if(err) return next(err);
-			res.render('edit_category',{page_title:"Edit Customers - Node.js", data : rows[0]});
-		});
-	});
-};
-
-exports.update = function(req, res, next){
-
-  var data = req.body;
-  var id = req.params.id;
-  req.getConnection(function(err, connection){
-			connection.query('UPDATE categories SET ? WHERE id = ?', [data, id], function(err, rows){
-    			if (err) next(err);
-          		res.redirect('/categories');
-    		});
-
-    });
-};
-
-exports.delete = function(req, res, next){
-	var id = req.params.id;
-	req.getConnection(function(err, connection){
-		connection.query('DELETE FROM categories WHERE id = ?', [id], function(err,rows){
-			if(err) return next(err);
+	async function add(req, res, next) {
+		try {
+			let input = req.body;
+			let data = [
+				input.description
+			];
+			let results = await pool.query('insert into categories (description)  values ($1)', data);
 			res.redirect('/categories');
-		});
-	});
-};
+		}
+		catch (err) {
+			next(err)
+		}
+	};
+
+	async function get(req, res, next) {
+		try {
+			var id = req.params.id;
+			let result = await pool.query('SELECT * FROM categories WHERE id = $1', [id]);
+			res.render('edit_category', {
+				page_title: "Edit Customers - Node.js",
+				data: result.rows[0]
+			});
+		}
+		catch (err) {
+			next(err);
+		}
+	};
+
+	async function update(req, res, next) {
+
+		try {
+			let data = req.body;
+			let id = req.params.id;
+			let description = req.body.description;
+
+			await pool.query('UPDATE categories SET description = $1 WHERE id = $2', [description, id]);
+			res.redirect('/categories');
+		}
+		catch (err) {
+			next(err);
+		}
+
+	};
+
+	async function deleteOne(req, res, next) {
+		var id = req.params.id;
+		try{
+			await pool.query('DELETE FROM categories WHERE id = $1', [id]);
+			res.redirect('/categories');
+		}
+		catch(err){
+			next(err);
+		}
+	};
+
+	return {
+		add,
+		delete: deleteOne,
+		update,
+		get,
+		showAdd,
+		show
+	}
+}

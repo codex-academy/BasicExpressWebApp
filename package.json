@@ -14,6 +14,7 @@
     "express-handlebars": "^1.1.0",
     "express-myconnection": "^1.0.4",
     "mysql": "^2.5.3",
+    "pg": "^7.4.3",
     "prompt": "^0.2.14"
   }
 }
