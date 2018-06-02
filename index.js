@@ -17,6 +17,7 @@ if (process.env.DATABASE_URL){
 }
 
 const connectionString = process.env.DATABASE_URL || 'postgresql://localhost:5432/my_products';
+console.log(connectionString);
 
 const pool = new Pool({
     connectionString,
