@@ -2,12 +2,27 @@
 
 <a href="/products/add">Add</a>
 
-{{#products}}
-  <h2>{{description}}</h2>
-  <a href="/products/edit/{{id}}">Edit</a>
-  <a href="/products/delete/{{id}}">Delete</a>
-{{/products}}
+<table>
+  <tr>
+    <th>Description</th>
+    <th>Price</th>
+  </tr>
+  {{#products}}
+  <tr>
+    <td>
+      {{description}}
+    </td>
+    <td>
+      {{price}}
+    </td>
+    <td>
+      <a href="/products/edit/{{id}}">Edit</a>
+      <a href="/products/delete/{{id}}">Delete</a>
+    </td>
+    {{/products}}
+  </tr>
+</table>
 
 {{#no_products}}
-  <p>No products available yet. Add some above.</p>
+<p>No products available yet. Add some above.</p>
 {{/no_products}}
