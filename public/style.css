@@ -82,3 +82,10 @@ input[type=submit] {
 .nav a:hover {
 	background-color: #4e5e56;
 }
+
+.message {
+	color : darkcyan;
+	margin-bottom: 0.5em;
+	margin-top : 1.0em;
+	font-weight: bold;
+}

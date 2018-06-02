@@ -29,6 +29,8 @@ module.exports = function CategoryRoutes(pool) {
 				input.description
 			];
 			let results = await pool.query('insert into categories (description)  values ($1)', data);
+			req.flash('info', 'Category added!');
+
 			res.redirect('/categories');
 		}
 		catch (err) {
@@ -56,8 +58,8 @@ module.exports = function CategoryRoutes(pool) {
 			let data = req.body;
 			let id = req.params.id;
 			let description = req.body.description;
-
 			await pool.query('UPDATE categories SET description = $1 WHERE id = $2', [description, id]);
+			req.flash('info', 'Category updated!');
 			res.redirect('/categories');
 		}
 		catch (err) {
@@ -70,6 +72,7 @@ module.exports = function CategoryRoutes(pool) {
 		var id = req.params.id;
 		try{
 			await pool.query('DELETE FROM categories WHERE id = $1', [id]);
+			req.flash('info', 'Category deleted!');
 			res.redirect('/categories');
 		}
 		catch(err){

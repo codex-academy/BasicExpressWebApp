@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const Categories = require('./routes/categories');
 const Products = require('./routes/products');
 const app = express();
+const session = require('express-session');
+const flash = require('express-flash');
 
 const pg = require("pg");
 
@@ -27,6 +29,15 @@ const pool = new Pool({
 const categories = Categories(pool);
 const products = Products(pool);
 
+
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true
+  }));
+
+app.use(flash());
+   
 //setup template handlebars as the template engine
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');

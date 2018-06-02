@@ -43,6 +43,8 @@ module.exports = function(pool) {
 			];
 			await pool.query(`insert into products(category_id, description, price) 
 						values ($1, $2, $3)`, data);
+			
+			req.flash('info', 'Product added!')
 			res.redirect('/products');
 		}
 		catch (err) {
@@ -85,6 +87,8 @@ module.exports = function(pool) {
 				description = $2, price = $3 WHERE id = $4`;
 
 			await pool.query(updateQuery, data);
+			req.flash('info', 'Product updated!')
+
 			res.redirect('/products');
 		}
 		catch(err){
@@ -96,6 +100,7 @@ module.exports = function(pool) {
 		try{
 			var id = req.params.id;
 			await pool.query('DELETE FROM products WHERE id = $1', [id]);
+			req.flash('info', 'Product deleted!')
 			res.redirect('/products');
 		}
 		catch(err){
