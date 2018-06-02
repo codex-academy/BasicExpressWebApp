@@ -11,12 +11,16 @@ const pg = require("pg");
 
 const Pool = pg.Pool;
 
+let useSSL = false;
+if (process.env.DATABASE_URL){
+    useSSL = true;
+}
+
+const connectionString = process.env.DATABASE_URL || 'postgresql://localhost:5432/my_products';
+
 const pool = new Pool({
-    // user: 'dbuser',
-    host: 'localhost',
-    database: 'my_products',
-    // password: 'secretpassword',
-    // port: 3211,
+    connectionString,
+    ssl : useSSL
   });
 
 const categories = Categories(pool);
