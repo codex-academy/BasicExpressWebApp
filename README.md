@@ -10,52 +10,34 @@ Fork this repo and clone it into a folder on your laptop and then follow these i
 
 #Setup
 
-To run this example locally you will need to have installed
-* NodeJS
+To run this example locally you will need to have installed:
+
+* NodeJS version 8+ install it using `nvm`
 * npm
-* MySQL
-* A MySQL client - I recommend phpMyAdmin
+* PostgreSQL
 
 You can use apt-get to install all of the above.
 
 ##Node JS
 
-Open a terminal window to check if you need to install node & npm by trying to run these two commands.
+You need NodeJs version 8+  install it using [nvm](https://github.com/creationix/nvm) - `nvm install 8`
 
-On Ubuntu to install node & npm use this commands:
-* sudo apt-get install nodejs-legacy
-* sudo apt-get install npm
+##Install PostgreSQL
 
-##Install MySQL
-
-Use these instructions to install MySQL & PHP on Ubuntu.
-
-https://www.digitalocean.com/community/tutorials/a-basic-mysql-tutorial
-
-## phpMyAdmin
-
-You need a tool to administer your database. We will use phpMyAdmin for that. It's a web application that allows you to administer your database.
-
-Use these instructions to install it:
-
-https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu-14-04
-
-> If you have trouble running phpMyAdmin locally after the installation it is most likely due to the fact that you didn't select the install options for Apache. When given the option to install to Apache config for phpMyAdmin you need to select it explicitly using the spacebar. But all is not lost - reconfigure Apache and phpMyAdmin by using this command ```sudo dpkg-reconfigure phpMyAdmin``` on the command line. Be sure to select Apache this time around!
+You can install PostgreSQL like [this]()
 
 ## Database setup
 
 Once you have all the above installed you need to setup the database.
 
-To setup the database open a SQL window in phpMyAdmin and run this SQL:
-
-## PostgreSQL
+### PostgreSQL
 
 ```sql
-
 createdb my_products;
 psql -d my_products;
-
 ```
+
+After creating the database execute this SQL command to create the `categories` and `products` table. Be sure to run this in the newly created `my_products` database.
 
 ```sql
 
@@ -74,46 +56,8 @@ create table products (
 
 ```
 
-## MySQL
 
-```sql
-CREATE DATABASE my_products;
-CREATE USER green_grocer@localhost IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON my_products.* TO green_grocer@localhost;
-FLUSH PRIVILEGES;
-```
-
-After creating the database execute this SQL command to create the `categories` and `products` table. Be sure to run this in the newly created `my_products` database.
-
-```sql
-use my_products;
-
-create table categories(
-	id int primary key auto_increment,
-	description char(100) not null
-);
-
-create table products (
-	id int primary key auto_increment,
-        description char(100) not null,
-	price decimal(10,2),
-	category_id int,
-	foreign key (category_id) references categories(id)
-);
-```
-
-Now check if the tables were create successfully. You can do that by running these SQL commands in the `my_products` database
-
-```
-select * from categories;
-select * from products;
-```
-
-> If you already have a products table and it doesn't have a category_id column, run this SQL to add it:
-
-> ```ALTER TABLE products ADD category_id INT;```
-
-#Use it
+## Use it
 
 Now you should be ready to run the application.
 
@@ -129,4 +73,26 @@ If there were no errors, open http://localhost:3000 in a web browser and Create,
 
 Use this as a basis for your own experiments, try to add more tables. Link the tables together using SQL.
 
-The web pages use [handlebar.js templates](http://handlebarsjs.com/), an extension of [mustache](http://mustache.github.io/).
+The web pages use [handlebar.js templates](http://handlebarsjs.com/)
+
+## Deployment
+
+To deploy the application to Heroku install the Heroku command line utility and create a Heroku account.
+
+Initialize your application as a Heroku app by using: `heroku create`
+
+Creae a PostgreSQL database on Heroku for you app using this command: `heroku addons:create heroku-postgresql:hobby-dev`
+
+See more info about the creaeted database using:`heroku pg:info`
+
+To connect to the PostgreSQL database on Heroku run: `heroku pg:psql`
+
+Create the necessary tables in the database by runnning the scripts above in the terminal that will create the `categories` ans `products` tables.
+
+To deploy your app run this command: `git push heroku master`
+
+Open the deployed app in a browser running this command : `heroku open`
+
+To see the log files to look for deployment issue use: `heroku logs`
+
+> Note that the application is using two environment variables to be able to deploy to Heroku `process.env.PORT` and `process.env.`

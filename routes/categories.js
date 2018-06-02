@@ -8,7 +8,7 @@ module.exports = function CategoryRoutes(pool) {
 	async function show(req, res, next) {
 		try {
 			let results = await pool.query('SELECT * from categories');
-			res.render('categories', {
+			res.render('categories/home', {
 				no_products: results.length === 0,
 				categories: results.rows,
 			});
@@ -19,7 +19,7 @@ module.exports = function CategoryRoutes(pool) {
 	};
 
 	function showAdd(req, res, next) {
-		res.render('add_category');
+		res.render('categories/add');
 	}
 
 	async function add(req, res, next) {
@@ -40,7 +40,7 @@ module.exports = function CategoryRoutes(pool) {
 		try {
 			var id = req.params.id;
 			let result = await pool.query('SELECT * FROM categories WHERE id = $1', [id]);
-			res.render('edit_category', {
+			res.render('categories/edit', {
 				page_title: "Edit Customers - Node.js",
 				data: result.rows[0]
 			});

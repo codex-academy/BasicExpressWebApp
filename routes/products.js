@@ -9,7 +9,7 @@ module.exports = function(pool) {
 		try {
 			let result = await pool.query('SELECT * from products');
 			let results = result.rows;
-			res.render('home', {
+			res.render('products/home', {
 				no_products: results.length === 0,
 				products: results,
 			});
@@ -23,7 +23,7 @@ module.exports = function(pool) {
 		try {
 			let result = await pool.query('SELECT * from categories');
 			let categories = result.rows;
-			res.render('add', {
+			res.render('products/add', {
 				categories: categories,
 			});
 		}
@@ -63,7 +63,7 @@ module.exports = function(pool) {
 				return category;
 			});
 
-			res.render('edit', {
+			res.render('products/edit', {
 				categories: categories,
 				data: product
 			});
