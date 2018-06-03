@@ -3,11 +3,11 @@
  * A very basic CRUD example using PostgreSQL
  */
 
-module.exports = function CategoryRoutes(pool) {
-
+module.exports = function CategoryRoutes(categoryService) {
+	
 	async function show(req, res, next) {
 		try {
-			let results = await pool.query('SELECT * from categories');
+			let results = await categoryService.all();
 			res.render('categories/home', {
 				no_products: results.length === 0,
 				categories: results.rows,
@@ -25,12 +25,8 @@ module.exports = function CategoryRoutes(pool) {
 	async function add(req, res, next) {
 		try {
 			let input = req.body;
-			let data = [
-				input.description
-			];
-			let results = await pool.query('insert into categories (description)  values ($1)', data);
+			await categoryService.add(input);
 			req.flash('info', 'Category added!');
-
 			res.redirect('/categories');
 		}
 		catch (err) {
@@ -41,7 +37,7 @@ module.exports = function CategoryRoutes(pool) {
 	async function get(req, res, next) {
 		try {
 			var id = req.params.id;
-			let result = await pool.query('SELECT * FROM categories WHERE id = $1', [id]);
+			let result = await categoryService.get(id); // pool.query('SELECT * FROM categories WHERE id = $1', [id]);
 			res.render('categories/edit', {
 				page_title: "Edit Customers - Node.js",
 				data: result.rows[0]
@@ -58,7 +54,11 @@ module.exports = function CategoryRoutes(pool) {
 			let data = req.body;
 			let id = req.params.id;
 			let description = req.body.description;
-			await pool.query('UPDATE categories SET description = $1 WHERE id = $2', [description, id]);
+
+			await categoryService.update({
+				id,
+				description
+			})
 			req.flash('info', 'Category updated!');
 			res.redirect('/categories');
 		}
@@ -71,7 +71,7 @@ module.exports = function CategoryRoutes(pool) {
 	async function deleteOne(req, res, next) {
 		var id = req.params.id;
 		try{
-			await pool.query('DELETE FROM categories WHERE id = $1', [id]);
+			await categoryService.delete(id);
 			req.flash('info', 'Category deleted!');
 			res.redirect('/categories');
 		}

@@ -8,6 +8,7 @@ const Products = require('./routes/products');
 const app = express();
 const session = require('express-session');
 const flash = require('express-flash');
+const CategoryService = require('./services/category-service');
 
 const pg = require("pg");
 
@@ -26,9 +27,9 @@ const pool = new Pool({
     ssl : useSSL
   });
 
-const categories = Categories(pool);
+const categoryService = CategoryService(pool);
+const categories = Categories(categoryService);
 const products = Products(pool);
-
 
 app.use(session({
     secret: 'keyboard cat',
