@@ -58,7 +58,7 @@ module.exports = function(pool) {
 		try {
 			let results = await productService.all(); 
 			res.render('products/home', {
-				no_products: results.length === 0,
+				no_products: results.rows.length === 0,
 				products: results,
 			});
 		}

@@ -41,7 +41,26 @@ As the postgres user run this command : `createdb my_products;`
 
 Once done logout out of the `postgres` user. By typing `exit` in the terminal.
 
+```
+sudo -u postgres createdb my_products;
+sudo -u postgres createuser coder -P;
+```
+
+`sudo -u postgres psql;`
+
+In *psql* run this command: `grant all privileges on database my_products to coder;`
+
+Now exit as ``
+
+`psql -d`
+
 You should now be able to connect to the `my_products` database using `psql -d my_products;`
+
+`createuser green_grocer -P`
+
+Please enter a password of `c@rr0ts`
+
+`GRANT ALL PRIVILEGES ON DATABASE "my_db" to my_user;`
 
 After creating the database execute these SQL commands to create the `categories` and `products` table. Be sure to run this in the newly created `my_products` database.
 
