@@ -42,9 +42,13 @@ sudo -u postgres createdb my_products;
 sudo -u postgres createuser coder -P;
 ```
 
-`sudo -u postgres psql;`
+Now run *psql* as the *postgres* user:
 
-In *psql* run this command: `grant all privileges on database my_products to coder;`
+```
+sudo -u postgres psql;
+```
+
+And run this command: `grant all privileges on database my_products to coder;` to grant access to the `my_products` database for the `coder` user. 
 
 Type in `\q` to exit *psql* as the *postgres* user.
 
