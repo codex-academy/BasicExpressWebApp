@@ -1,4 +1,4 @@
-#Introduction
+# Introduction
 
 This is an example that shows the basics of how to create CRUD screens with NodeJS using ExpressJS and MySQL. CRUD stands for Create, Read, Update and Delete - this is the bread and butter of web application development.
 
@@ -35,11 +35,7 @@ sudo apt-get install postgresql postgresql-contrib
 
 Once you have all the above installed you need to setup the database.
 
-First change to the postgres user using: `sudo -i -u postgres `
-
-As the postgres user run this command : `createdb my_products;`
-
-Once done logout out of the `postgres` user. By typing `exit` in the terminal.
+Create a database called `my_products` and username - `coder` with a password of `pg123`. Enter the password when prompted after executing the `createuser` command. 
 
 ```
 sudo -u postgres createdb my_products;
@@ -50,19 +46,11 @@ sudo -u postgres createuser coder -P;
 
 In *psql* run this command: `grant all privileges on database my_products to coder;`
 
-Now exit as ``
+Type in `\q` to exit *psql* as the *postgres* user.
 
-`psql -d`
+Connect to your database using: `psql -d my_products`
 
-You should now be able to connect to the `my_products` database using `psql -d my_products;`
-
-`createuser green_grocer -P`
-
-Please enter a password of `c@rr0ts`
-
-`GRANT ALL PRIVILEGES ON DATABASE "my_db" to my_user;`
-
-After creating the database execute these SQL commands to create the `categories` and `products` table. Be sure to run this in the newly created `my_products` database.
+Execute these SQL commands to create the `categories` and `products` table in your database. 
 
 ```sql
 
@@ -78,7 +66,6 @@ create table products (
 	category_id int,
 	foreign key (category_id) references categories(id)
 );
-
 ```
 
 ## Use it
