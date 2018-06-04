@@ -24,20 +24,26 @@ You need NodeJs version 8+  install it using [nvm](https://github.com/creationix
 
 ##Install PostgreSQL
 
-You can install PostgreSQL like [this]()
+You can install PostgreSQL on Ubuntu using these commands:
+
+```
+sudo apt-get update
+sudo apt-get install postgresql postgresql-contrib
+```
 
 ## Database setup
 
 Once you have all the above installed you need to setup the database.
 
-### PostgreSQL
+First change to the postgres user using: `sudo -i -u postgres `
 
-```sql
-createdb my_products;
-psql -d my_products;
-```
+As the postgres user run this command : `createdb my_products;`
 
-After creating the database execute this SQL command to create the `categories` and `products` table. Be sure to run this in the newly created `my_products` database.
+Once done logout out of the `postgres` user. By typing `exit` in the terminal.
+
+You should now be able to connect to the `my_products` database using `psql -d my_products;`
+
+After creating the database execute these SQL commands to create the `categories` and `products` table. Be sure to run this in the newly created `my_products` database.
 
 ```sql
 
@@ -55,7 +61,6 @@ create table products (
 );
 
 ```
-
 
 ## Use it
 
