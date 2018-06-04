@@ -110,4 +110,4 @@ Open the deployed app in a browser running this command : `heroku open`
 
 To see the log files to look for deployment issue use: `heroku logs`
 
-> Note that the application is using two environment variables to be able to deploy to Heroku `process.env.PORT` and `process.env.`
+> Note that the application is using two environment variables to be able to deploy to Heroku `process.env.PORT` and `process.env.DATABASE_URL`
