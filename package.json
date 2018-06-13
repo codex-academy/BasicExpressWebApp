@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "test" : "mocha"
   },
   "author": "",
   "license": "ISC",
@@ -19,5 +20,8 @@
     "mysql": "^2.5.3",
     "pg": "^7.4.3",
     "prompt": "^0.2.14"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
   }
 }
