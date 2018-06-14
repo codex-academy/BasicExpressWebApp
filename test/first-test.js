@@ -11,7 +11,7 @@ const pool = new Pool({
 
 
 describe('The basic database web app', function(){
-    it('should pass this test', async function(){
+    it('should pass the db test', async function(){
 
         let categoryService = CategoryService(pool);
 
