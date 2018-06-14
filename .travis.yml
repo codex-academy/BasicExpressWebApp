@@ -1,7 +1,7 @@
 language: node_js
 
 env:
-  - DB=postgresql://postgres@localhost:5432/my_products
+  - DATABASE_URL=postgresql://postgres@localhost:5432/my_products
 
 node_js:  
   - "8.9.4"
