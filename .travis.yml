@@ -4,7 +4,7 @@ node_js:
 
 before_script:
   - psql -c 'create database my_products;' -U postgres
-  - psql -U postgres -d my_products name” -a -f tables.sql
+  - psql -U postgres -d my_products -a -f tables.sql
 
 addons:
   postgresql: '9.4'
