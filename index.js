@@ -9,9 +9,7 @@ const app = express();
 const session = require('express-session');
 const flash = require('express-flash');
 const CategoryService = require('./services/category-service');
-
 const pg = require("pg");
-
 const Pool = pg.Pool;
 
 let useSSL = false;
@@ -20,7 +18,6 @@ if (process.env.DATABASE_URL){
 }
 
 const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/my_products';
-console.log(connectionString);
 
 const pool = new Pool({
     connectionString,
