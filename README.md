@@ -1,5 +1,7 @@
 # Introduction
 
+https://travis-ci.org/codex-academy/BasicExpressWebApp.svg?branch=master
+
 This is an example that shows the basics of how to create CRUD screens with NodeJS using ExpressJS and MySQL. CRUD stands for Create, Read, Update and Delete - this is the bread and butter of web application development.
 
 You use CRUD to manage all the data in your web application. Once data is stored it can be retrieved, updated, deleted or whatever your demanding client wants.
