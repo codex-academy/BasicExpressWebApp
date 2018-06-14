@@ -1,15 +1,14 @@
 language: node_js
-node_js: "8.9.4"
+node_js: 
+  - "8.9.4"
 
 before_script:
-  psql -c 'create database "my_products";' -U postgres
-  psql -U postgres -d my_products name” -a -f tables.sql
-
+  - psql -c 'create database my_products;' -U postgres
+  - psql -U postgres -d my_products name” -a -f tables.sql
 
 addons:
-
   postgresql: '9.4'
     apt:
-      packages:
-        postgresql-server-dev-9.4
+    packages:
+    - postgresql-server-dev-9.4
 
