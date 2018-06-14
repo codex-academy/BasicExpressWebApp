@@ -15,6 +15,10 @@ describe('The basic database web app', function(){
 
         let categoryService = CategoryService(pool);
 
-        assert.equal(1, await categoryService.all());
+        await categoryService.all();
     });
+
+    after(function(){
+        pool.end();
+    })
 });
