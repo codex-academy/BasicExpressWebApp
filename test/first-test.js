@@ -9,9 +9,8 @@ const pool = new Pool({
     connectionString
 });
 
-
 describe('The basic database web app', function(){
-    
+
     beforeEach(async function(){
         await pool.query("delete from products;");
         await pool.query("delete from categories;");
@@ -24,8 +23,9 @@ describe('The basic database web app', function(){
             description : "Diary"
         });
 
+        let categories = await categoryService.all();
 
-        assert.equal(0, categories.all());
+        assert.equal(1, categories.length);
 
     });
 
