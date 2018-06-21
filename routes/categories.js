@@ -7,10 +7,10 @@ module.exports = function CategoryRoutes(categoryService) {
 	
 	async function show(req, res, next) {
 		try {
-			let results = await categoryService.all();
+			let categories = await categoryService.all();
 			res.render('categories/home', {
-				no_products: results.length === 0,
-				categories: results.rows,
+				no_products: categories === 0,
+				categories,
 			});
 		}
 		catch (err) {

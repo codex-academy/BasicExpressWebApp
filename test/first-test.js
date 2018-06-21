@@ -11,11 +11,22 @@ const pool = new Pool({
 
 
 describe('The basic database web app', function(){
+    
+    beforeEach(async function(){
+        await pool.query("delete from products;");
+        await pool.query("delete from categories;");
+    });
+
     it('should pass the db test', async function(){
 
         let categoryService = CategoryService(pool);
+        await categoryService.add({
+            description : "Diary"
+        });
 
-        await categoryService.all();
+
+        assert.equal(0, categories.all());
+
     });
 
     after(function(){
