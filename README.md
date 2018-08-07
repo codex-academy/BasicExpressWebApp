@@ -100,7 +100,7 @@ Initialize your application as a Heroku app by using: `heroku create`
 
 Create a PostgreSQL database on Heroku for you app using this command: `heroku addons:create heroku-postgresql:hobby-dev`
 
-See more info about the creaeted database using:`heroku pg:info`
+See more info about the created database using:`heroku pg:info`
 
 To connect to the PostgreSQL database on Heroku by runnning: `heroku pg:psql` Create the `categories` and `products` tables in the Heroku remote database by runnning the script above.
 
