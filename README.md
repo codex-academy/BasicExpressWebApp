@@ -102,17 +102,37 @@ To deploy the application to Heroku install the Heroku command line utility and 
 
 Initialize your application as a Heroku app by using: `heroku create`
 
-Create a PostgreSQL database on Heroku for you app using this command: `heroku addons:create heroku-postgresql:hobby-dev`
+Create a PostgreSQL database on Heroku for you app using this command: 
 
-See more info about the created database using:`heroku pg:info`
+```
+heroku addons:create heroku-postgresql:hobby-dev
+```
 
-To connect to the PostgreSQL database on Heroku by runnning: `heroku pg:psql` Create the `categories` and `products` tables in the Heroku remote database by runnning the script above.
+See more info about the created database using: `heroku pg:info`
 
-To deploy your app run this command: `git push heroku master`
+To connect to the PostgreSQL database on Heroku by runnning: 
 
-Open the deployed app in a browser running this command : `heroku open`
+```heroku pg:psql``` 
 
-To see the log files to look for deployment issue use: `heroku logs`
+Create the `categories` and `products` tables in the Heroku remote database by runnning the script above.
+
+To deploy your app run this command: 
+
+```
+git push heroku master
+```
+
+Open the deployed app in a browser running this command : 
+
+```
+heroku open
+```
+
+To see the log files to look for deployment issue use: 
+
+```
+heroku logs
+```
 
 Note that the application is using two environment variables to be able to deploy to Heroku 
 
