@@ -50,7 +50,11 @@ Now run *psql* as the *postgres* user:
 sudo -u postgres psql;
 ```
 
-And run this command: `grant all privileges on database my_products to coder;` to grant access to the `my_products` database for the `coder` user. 
+Grant the `coder` user access to the `my_products` database by running this command: 
+
+```
+grant all privileges on database my_products to coder;
+```
 
 Type in `\q` to exit *psql* as the *postgres* user.
 
@@ -80,7 +84,7 @@ Now you should be ready to run the application.
 
 Open a terminal window in the root of the CRUD application and type
 
-`sudo npm install `
+`sudo npm install`
 
 This will install all the modules that the application depends on.
 
