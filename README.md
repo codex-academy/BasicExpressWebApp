@@ -50,7 +50,11 @@ Now run *psql* as the *postgres* user:
 sudo -u postgres psql;
 ```
 
-And run this command: `grant all privileges on database my_products to coder;` to grant access to the `my_products` database for the `coder` user. 
+Grant the `coder` user access to the `my_products` database by running this command: 
+
+```
+grant all privileges on database my_products to coder;
+```
 
 Type in `\q` to exit *psql* as the *postgres* user.
 
@@ -98,7 +102,7 @@ Now you should be ready to run the application.
 
 Open a terminal window in the root of the CRUD application and type
 
-`sudo npm install `
+`sudo npm install`
 
 This will install all the modules that the application depends on.
 
@@ -116,18 +120,39 @@ To deploy the application to Heroku install the Heroku command line utility and 
 
 Initialize your application as a Heroku app by using: `heroku create`
 
-Creae a PostgreSQL database on Heroku for you app using this command: `heroku addons:create heroku-postgresql:hobby-dev`
+Create a PostgreSQL database on Heroku for you app using this command: 
 
-See more info about the creaeted database using:`heroku pg:info`
+```
+heroku addons:create heroku-postgresql:hobby-dev
+```
 
-To connect to the PostgreSQL database on Heroku run: `heroku pg:psql`
+See more info about the created database using: `heroku pg:info`
 
-Create the necessary tables in the database by runnning the scripts above in the terminal that will create the `categories` ans `products` tables.
+To connect to the PostgreSQL database on Heroku by runnning: 
 
-To deploy your app run this command: `git push heroku master`
+```heroku pg:psql``` 
 
-Open the deployed app in a browser running this command : `heroku open`
+Create the `categories` and `products` tables in the Heroku remote database by runnning the script above.
 
-To see the log files to look for deployment issue use: `heroku logs`
+To deploy your app run this command: 
 
-> Note that the application is using two environment variables to be able to deploy to Heroku `process.env.PORT` and `process.env.DATABASE_URL`
+```
+git push heroku master
+```
+
+Open the deployed app in a browser running this command : 
+
+```
+heroku open
+```
+
+To see the log files to look for deployment issue use: 
+
+```
+heroku logs
+```
+
+Note that the application is using two environment variables to be able to deploy to Heroku 
+
+* `process.env.PORT`
+* `process.env.DATABASE_URL`
