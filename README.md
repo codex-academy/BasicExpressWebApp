@@ -10,7 +10,7 @@ I kept this example simple on purpose, but it can be used as the base of somethi
 
 Fork this repo and clone it into a folder on your laptop and then follow these instructions.
 
-#Setup
+# Setup
 
 To run this example locally you will need to have installed:
 
@@ -20,11 +20,11 @@ To run this example locally you will need to have installed:
 
 You can use apt-get to install all of the above.
 
-##Node JS
+## Node JS
 
 You need NodeJs version 8+  install it using [nvm](https://github.com/creationix/nvm) - `nvm install 8`
 
-##Install PostgreSQL
+## Install PostgreSQL
 
 You can install PostgreSQL on Ubuntu using these commands:
 
@@ -72,6 +72,24 @@ create table products (
 	category_id int,
 	foreign key (category_id) references categories(id)
 );
+```
+
+You see which tables are in the database by using this command:
+
+```
+\dt
+```
+
+You can see the columns of a database using this:
+
+```
+\d+ <table_name_here>
+```
+
+To see all the columns in the products table do this:
+
+```
+\d+ products
 ```
 
 ## Use it
