@@ -41,6 +41,21 @@ describe('The basic database web app', function(){
         assert.equal('Milk products', updateCategory.description);
     });
 
+    it('should able to delete a category', async function(){
+        // assemble
+        let categoryService = CategoryService(pool);
+        let category = await categoryService.add({
+            description : "Diary"
+        });
+
+        // act
+        await categoryService.delete(category.id);
+        
+        // assert
+        let updateCategory = await categoryService.get(category.id);
+        assert.equal(null, updateCategory);
+    });
+
     after(function(){
         pool.end();
     })
