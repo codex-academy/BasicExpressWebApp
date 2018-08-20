@@ -66,12 +66,12 @@ Execute these SQL commands to create the `categories` and `products` table in yo
 
 create table categories(
 	id serial not null primary key,
-	description char(100) not null
+	description text not null
 );
 
 create table products (
 	id serial not null primary key,
-    description char(100) not null,
+    description text not null,
 	price decimal(10,2),
 	category_id int,
 	foreign key (category_id) references categories(id)

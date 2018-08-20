@@ -1,6 +1,8 @@
 module.exports = function ProductService(pool){
     async function all(){
-        let results = await pool.query('SELECT * from products');
+        const query = `select p.id, p.description, p.price, c.description as category_description from products p
+            join categories c on c.id = p.category_id`;
+        let results = await pool.query(query);
         return results.rows;
     }
     async function create(product){
@@ -41,6 +43,7 @@ module.exports = function ProductService(pool){
         all,
         create,
         delete: deleteById,
-        get
+        get,
+        update
     }
 }

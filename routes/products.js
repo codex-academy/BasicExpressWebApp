@@ -1,9 +1,7 @@
 const ProductService = require('../services/product-service');
 
-module.exports = function(pool) {
+module.exports = function(productService, categoryService) {
 	
-	let productService = ProductService(pool);
-
 	async function show(req, res, next) {
 		try {
 			let results = await productService.all(); 
@@ -19,8 +17,7 @@ module.exports = function(pool) {
 
 	async function showAdd(req, res, next) {
 		try {
-			let result = await pool.query('SELECT * from categories');
-			let categories = result.rows;
+			let categories = await categoryService.all();
 			res.render('products/add', {
 				categories: categories,
 			});
@@ -28,7 +25,6 @@ module.exports = function(pool) {
 		catch (err) {
 			next(err);
 		}
-
 	};
 
 	async function add(req, res, next) {
@@ -51,9 +47,9 @@ module.exports = function(pool) {
 	async function get(req, res, next) {
 		try {
 			let id = req.params.id;
-			let result = await pool.query('SELECT * FROM categories');
-			let categories = result.rows;
+			let categories = await categoryService.all();
 			let product = await productService.get(id);
+			// check which item is selected to make the dropdown work
 			categories = categories.map(function (category) {
 				category.selected = category.id === product.category_id ? "selected" : "";
 				return category;

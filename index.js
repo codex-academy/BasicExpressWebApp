@@ -9,16 +9,17 @@ const app = express();
 const session = require('express-session');
 const flash = require('express-flash');
 const CategoryService = require('./services/category-service');
+const ProductService = require('./services/product-service');
 const pg = require("pg");
 const Pool = pg.Pool;
 
+// should we use a SSL connection
 let useSSL = false;
 let local = process.env.LOCAL || false;
-
 if (process.env.DATABASE_URL && !local){
     useSSL = true;
 }
-
+// which db connection to use
 const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/my_products';
 
 const pool = new Pool({
@@ -27,14 +28,15 @@ const pool = new Pool({
   });
 
 const categoryService = CategoryService(pool);
-const categories = Categories(categoryService);
-const products = Products(pool);
+const productService = ProductService(pool);
+const categoryRoutes = Categories(categoryService);
+const productRoutes = Products(productService, categoryService);
 
 app.use(session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true
-  }));
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true
+}));
 
 app.use(flash());
    
@@ -57,24 +59,22 @@ function errorHandler(err, req, res, next) {
 }
 
 //setup the handlers
-
-app.get('/categories', categories.show);
-app.get('/categories/add', categories.showAdd);
-app.get('/categories/edit/:id', categories.get);
-app.post('/categories/update/:id', categories.update);
-app.post('/categories/add', categories.add);
+app.get('/categories', categoryRoutes.show);
+app.get('/categories/add', categoryRoutes.showAdd);
+app.get('/categories/edit/:id', categoryRoutes.get);
+app.post('/categories/update/:id', categoryRoutes.update);
+app.post('/categories/add', categoryRoutes.add);
 //this should be a post but this is only an illustration of CRUD - not on good practices
-app.get('/categories/delete/:id', categories.delete);
+app.get('/categories/delete/:id', categoryRoutes.delete);
 
-app.get('/', products.show);
-app.get('/products', products.show);
-app.get('/products/edit/:id', products.get);
-app.post('/products/update/:id', products.update);
-app.get('/products/add', products.showAdd);
-app.post('/products/add', products.add);
-
+app.get('/', productRoutes.show);
+app.get('/products', productRoutes.show);
+app.get('/products/edit/:id', productRoutes.get);
+app.post('/products/update/:id', productRoutes.update);
+app.get('/products/add', productRoutes.showAdd);
+app.post('/products/add', productRoutes.add);
 //this should be a post but this is only an illustration of CRUD - not on good practices
-app.get('/products/delete/:id', products.delete);
+app.get('/products/delete/:id', productRoutes.delete);
 
 app.use(errorHandler);
 
