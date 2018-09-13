@@ -62,7 +62,7 @@ Connect to your database using: `psql -d my_products`
 
 Execute these SQL commands to create the `categories` and `products` table in your database. 
 
-You can copy and paste the script below into psql or your can run the database script from psql using `\i database.sql`
+You can copy and paste the script below into psql or your can run the database script inside psql using `\i database.sql`
 
 ```sql
 
