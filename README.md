@@ -62,6 +62,8 @@ Connect to your database using: `psql -d my_products`
 
 Execute these SQL commands to create the `categories` and `products` table in your database. 
 
+You can copy and paste the script below into psql or your can run the database script inside psql using `\i database.sql`
+
 ```sql
 
 create table categories(
@@ -77,6 +79,8 @@ create table products (
 	foreign key (category_id) references categories(id)
 );
 ```
+
+> To do this on your own project create sql file containing the table create scripts that's in your projects root folder. Run the scripts using `\i <your script file here>`
 
 You see which tables are in the database by using this command:
 
