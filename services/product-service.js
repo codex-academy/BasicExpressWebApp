@@ -1,6 +1,7 @@
 module.exports = function ProductService(pool){
     async function all(){
-        const query = `select p.id, p.description, p.price, c.description as category_description from products p
+        const query = `select p.id, p.description, p.price, c.id as category_id, 
+            c.description as category_description from products p
             join categories c on c.id = p.category_id`;
         let results = await pool.query(query);
         return results.rows;
@@ -29,8 +30,11 @@ module.exports = function ProductService(pool){
             product.id
         ];
         
-        let updateQuery = `UPDATE products SET category_id = $1, 
-            description = $2, price = $3 WHERE id = $4`;
+        let updateQuery = `UPDATE products 
+            SET category_id = $1, 
+                description = $2, 
+                price = $3 
+            WHERE id = $4`;
 
         return pool.query(updateQuery, data);
     }

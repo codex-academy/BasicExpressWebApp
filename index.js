@@ -5,6 +5,8 @@ const exphbs  = require('express-handlebars');
 const bodyParser = require('body-parser');
 const Categories = require('./routes/categories');
 const Products = require('./routes/products');
+const ProductsAPI = require('./api/products-api');
+
 const app = express();
 const session = require('express-session');
 const flash = require('express-flash');
@@ -31,6 +33,7 @@ const categoryService = CategoryService(pool);
 const productService = ProductService(pool);
 const categoryRoutes = Categories(categoryService);
 const productRoutes = Products(productService, categoryService);
+const productsAPI = ProductsAPI(productService);
 
 app.use(session({
   secret: 'keyboard cat',
@@ -75,6 +78,8 @@ app.get('/products/add', productRoutes.showAdd);
 app.post('/products/add', productRoutes.add);
 //this should be a post but this is only an illustration of CRUD - not on good practices
 app.get('/products/delete/:id', productRoutes.delete);
+
+app.get('/api/products', productsAPI.all);
 
 app.use(errorHandler);
 
