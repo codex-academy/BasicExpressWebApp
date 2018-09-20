@@ -4,11 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-<<<<<<< HEAD
-    "test": "mocha",
-=======
     "test": "nyc --reporter=html --reporter=text mocha",
->>>>>>> 3a985556105fbd565a0ed7cb42b53c9910cfd63e
     "start": "node index.js"
   },
   "author": "",

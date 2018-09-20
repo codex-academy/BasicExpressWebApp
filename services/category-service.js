@@ -14,15 +14,11 @@ module.exports = function CategoryService(pool){
     }
 
     async function get(id){
-<<<<<<< HEAD
-        return pool.query('SELECT id, description FROM categories WHERE id = $1', [id]);
-=======
         let results = await pool.query('SELECT * FROM categories WHERE id = $1', [id]);
         if (results.rows.length > 0) {
             return results.rows[0];
         }
         return null;
->>>>>>> 3a985556105fbd565a0ed7cb42b53c9910cfd63e
     }
 
     async function update(category){
