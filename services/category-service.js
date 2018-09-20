@@ -7,11 +7,18 @@ module.exports = function CategoryService(pool){
         let data = [
             category.description
         ];
-        return pool.query('insert into categories (description)  values ($1)', data);
+        let results = await pool.query(`insert into categories (description)  
+            values ($1)
+            returning id, description`, data);
+        return results.rows[0]
     }
 
     async function get(id){
-        return pool.query('SELECT * FROM categories WHERE id = $1', [id]);
+        let results = await pool.query('SELECT * FROM categories WHERE id = $1', [id]);
+        if (results.rows.length > 0) {
+            return results.rows[0];
+        }
+        return null;
     }
 
     async function update(category){

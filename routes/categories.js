@@ -51,6 +51,9 @@ module.exports = function CategoryRoutes(categoryService) {
 	async function update(req, res, next) {
 
 		try {
+
+			console.log(JSON.stringify(req.headers));
+
 			let data = req.body;
 			let id = req.params.id;
 			let description = req.body.description;

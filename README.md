@@ -62,20 +62,42 @@ Connect to your database using: `psql -d my_products`
 
 Execute these SQL commands to create the `categories` and `products` table in your database. 
 
+You can copy and paste the script below into psql or your can run the database script inside psql using `\i database.sql`
+
 ```sql
 
 create table categories(
 	id serial not null primary key,
-	description char(100) not null
+	description text not null
 );
 
 create table products (
 	id serial not null primary key,
-    description char(100) not null,
+    description text not null,
 	price decimal(10,2),
 	category_id int,
 	foreign key (category_id) references categories(id)
 );
+```
+
+> To do this on your own project create sql file containing the table create scripts that's in your projects root folder. Run the scripts using `\i <your script file here>`
+
+You see which tables are in the database by using this command:
+
+```
+\dt
+```
+
+You can see the columns of a database using this:
+
+```
+\d+ <table_name_here>
+```
+
+To see all the columns in the products table do this:
+
+```
+\d+ products
 ```
 
 ## Use it
@@ -138,3 +160,19 @@ Note that the application is using two environment variables to be able to deplo
 
 * `process.env.PORT`
 * `process.env.DATABASE_URL`
+
+## API basics
+
+Look at the `products-api.js` file in the `api` folder to see how to create an simple API. And API endpoint returns JSON to the client using the HttpResponse Objects `json` method.
+
+```javascript
+res.json({
+	result: 'success'
+})
+```
+
+The API end point is running at http://localhost:3000/api/products.
+
+The `client.js` file in the public folder is using the API. It calls the API and renders the resulting JSON data to the screen using HandlebarsJS.
+
+Go to http://localhost:3000/client.html to see the screen using the API in action. It uses [axios](https://github.com/axios/axios) to call the API endpoints using HTTP.

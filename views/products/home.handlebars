@@ -6,6 +6,8 @@
   <tr>
     <th>Description</th>
     <th>Price</th>
+    <th>Category</th>
+    <th></th>
   </tr>
   {{#products}}
   <tr>
@@ -14,6 +16,9 @@
     </td>
     <td>
       {{price}}
+    </td>
+    <td>
+      {{category_description}}
     </td>
     <td>
       <a href="/products/edit/{{id}}">Edit</a>
