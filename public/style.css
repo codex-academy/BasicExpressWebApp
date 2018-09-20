@@ -89,3 +89,17 @@ input[type=submit] {
 	margin-top : 1.0em;
 	font-weight: bold;
 }
+
+table, td, th {    
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+}
+
+th, td {
+    padding: 15px;
+}	

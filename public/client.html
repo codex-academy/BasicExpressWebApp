@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.js"></script>
+    <link rel="stylesheet" href="/style.css">
+
+    <script type="text/x-template" class="productListTemplate">
+        <table>
+        <tr>
+            <th>Product name</th>
+            <th>Category name</th>
+            <th>Price</th>
+        </tr>
+        {{#each productList}}
+        <tr>
+                <td>{{description}}</td>
+                <td>{{category_description}}</td>
+                <td>{{price}}</td>
+            </tr>
+        {{/each}}
+    </table>
+    </script>
+
+</head>
+<body>
+    <div id="container">
+            <h1>Products via API</h1>
+            <div class="products">
+        
+            </div>
+    </div>
+</body>
+<script src="client.js"></script>
+</html>
