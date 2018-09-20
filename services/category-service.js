@@ -1,6 +1,6 @@
 module.exports = function CategoryService(pool){
     async function all(){
-        let categories = await pool.query('SELECT * from categories');
+        let categories = await pool.query('SELECT id, description from categories');
         return categories.rows;
     }
     async function add(category){
@@ -11,7 +11,7 @@ module.exports = function CategoryService(pool){
     }
 
     async function get(id){
-        return pool.query('SELECT * FROM categories WHERE id = $1', [id]);
+        return pool.query('SELECT id, description FROM categories WHERE id = $1', [id]);
     }
 
     async function update(category){
