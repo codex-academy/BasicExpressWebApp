@@ -1,13 +1,21 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    function compileTemplate(selector) {
+        let template = document.querySelector(selector);
+        let templateInstance = Handlebars.compile(template.innerHTML);
+        return templateInstance;
+    }
+
     let productListTemplate = document.querySelector('.productListTemplate');
     let categoryListTemplate = document.querySelector('.categoryListTemplate');
 
     let categoryListTemplateInstance = Handlebars.compile(categoryListTemplate.innerHTML);
     let productListTemplateInstance = Handlebars.compile(productListTemplate.innerHTML);
-    
+    let errorsTemplateInstance = compileTemplate('.errorsTemplate');
+
     let productsElem = document.querySelector('.products');
     let categoriesElem = document.querySelector('.categories');
+    let errorsElem = document.querySelector('.errors');
 
     let productNameElem = document.querySelector('.productName');
     let priceElem = document.querySelector('.price');
@@ -56,7 +64,20 @@ document.addEventListener('DOMContentLoaded', function() {
         let category_id = categoryIdElem.value;
         let price = priceElem.value;
 
-        productService.addProduct({
+        let errors = [];
+        if (!description) {
+            errors.push('Enter a product description');
+        }
+        if (!category_id) {
+            errors.push('Select a Category');
+        }
+        if (!description) {
+            errors.push('Enter a price');
+        }
+
+        if (errors.length === 0) {
+            errorsElem.innerHTML = '';
+            productService.addProduct({
                 category_id,
                 description,
                 price
@@ -68,12 +89,22 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(function(err){
                 alert(err);
             });
+        }
+        else {
+            errorsElem.innerHTML = errorsTemplateInstance({errors});
+        }
+        
     });
 
     showCategoryDropdown();
     showProducts();
 
+
 });
+
+function editProduct(id) {
+    alert(id);
+}
 
 function ProductService() {
     function getProducts(){
@@ -85,6 +116,7 @@ function ProductService() {
     }
 
     return {
+        addProduct,
         getProducts
     }
 }

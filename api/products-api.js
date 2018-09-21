@@ -1,3 +1,4 @@
+
 module.exports = function(productService) {
 	
 	async function all(req, res) {
