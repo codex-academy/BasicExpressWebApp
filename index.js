@@ -4,6 +4,7 @@ const express = require('express');
 const exphbs  = require('express-handlebars');
 const bodyParser = require('body-parser');
 const Categories = require('./routes/categories');
+const CategoriesAPI = require('./api/categories-api');
 const Products = require('./routes/products');
 const ProductsAPI = require('./api/products-api');
 
@@ -32,6 +33,7 @@ const pool = new Pool({
 const categoryService = CategoryService(pool);
 const productService = ProductService(pool);
 const categoryRoutes = Categories(categoryService);
+const categoryAPI = CategoriesAPI(categoryService);
 const productRoutes = Products(productService, categoryService);
 const productsAPI = ProductsAPI(productService);
 
@@ -80,6 +82,9 @@ app.post('/products/add', productRoutes.add);
 app.get('/products/delete/:id', productRoutes.delete);
 
 app.get('/api/products', productsAPI.all);
+app.post('/api/products', productsAPI.add);
+
+app.get('/api/categories', categoryAPI.all);
 
 app.use(errorHandler);
 

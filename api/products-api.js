@@ -1,13 +1,13 @@
+
 module.exports = function(productService) {
 	
 	async function all(req, res) {
 		try {
 			let results = await productService.all(); 
-
 			res.json({
 				status: 'success',
 				data: results
-			})
+			});
 		}
 		catch (err) {
 			next(err);

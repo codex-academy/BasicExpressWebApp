@@ -51,7 +51,7 @@ input[type=text], input[type=number] {
 	margin-bottom: 1em;
 }
 
-input[type=submit] {
+input[type=submit], button {
 	padding: 1em;
   	border: 0.3em solid #000;
 	font-weight: bold;
@@ -102,4 +102,8 @@ table {
 
 th, td {
     padding: 15px;
-}	
+}
+
+.errors {
+	color: red;
+}
