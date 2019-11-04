@@ -11,6 +11,10 @@ before_script:
   - psql -U postgres -d my_products_tests -a -f tables.sql
 
 addons:
-    apt:
+  apt:
+    sources:
+    - precise-pgdg-9.5
     packages:
-    - postgresql-server-dev-9.2
+    - postgresql-9.5
+    - postgresql-contrib-9.5
+  postgresql: 9.5
