@@ -14,7 +14,7 @@ Fork this repo and clone it into a folder on your laptop and then follow these i
 
 To run this example locally you will need to have installed:
 
-* NodeJS version 8+ install it using `nvm`
+* NodeJS version 12+ install it using `nvm`
 * npm
 * PostgreSQL
 
