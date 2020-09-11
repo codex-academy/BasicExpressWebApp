@@ -10,11 +10,15 @@ before_script:
   - psql -c 'create database  my_products_tests;' -U postgres
   - psql -U postgres -d my_products_tests -a -f tables.sql
 
-addons:
-  apt:
-    sources:
-    - precise-pgdg-9.5
-    packages:
-    - postgresql-9.5
-    - postgresql-contrib-9.5
-  postgresql: 9.5
+services:
+  - postgresql
+
+
+# addons:
+#   apt:
+#     sources:
+#     - precise-pgdg-9.5
+#     packages:
+#     - postgresql-9.5
+#     - postgresql-contrib-9.5
+#   postgresql: 9.5
