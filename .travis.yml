@@ -10,7 +10,5 @@ before_script:
   - psql -c 'create database  my_products_tests;' -U postgres
   - psql -U postgres -d my_products_tests -a -f tables.sql
 
-addons:
-    apt:
-    packages:
-    - postgresql-server-dev-9.2
+services:
+  - postgresql
