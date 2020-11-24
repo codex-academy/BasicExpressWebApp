@@ -23,7 +23,7 @@ if (process.env.DATABASE_URL && !local){
     useSSL = true;
 }
 // which db connection to use
-const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/my_products';
+const connectionString = process.env.DATABASE_URL || 'postgresql://localhost:5432/my_products';
 
 const pool = new Pool({
     connectionString,

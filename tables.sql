@@ -10,3 +10,6 @@ create table products (
 	category_id int,
 	foreign key (category_id) references categories(id)
 );
+
+alter table categories add constraint uniq_desc_constraint unique(description);
+

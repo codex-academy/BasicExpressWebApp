@@ -23,13 +23,25 @@ module.exports = function CategoryRoutes(categoryService) {
 	}
 
 	async function add(req, res, next) {
+		const {description} = req.body;
 		try {
-			let input = req.body;
-			await categoryService.add(input);
+			
+			if (!description) {
+				req.flash('error', 'Category is empty!');
+				return res.redirect('/categories/add');
+			}
+
+			await categoryService.add(description);
 			req.flash('info', 'Category added!');
 			res.redirect('/categories');
 		}
 		catch (err) {
+
+			if (err.stack.includes("duplicate key")){
+				req.flash('error', 'Category already exists : ' + description);
+				return res.redirect('/categories/add');
+			}
+
 			next(err)
 		}
 	};
@@ -40,7 +52,7 @@ module.exports = function CategoryRoutes(categoryService) {
 			let result = await categoryService.get(id); // pool.query('SELECT * FROM categories WHERE id = $1', [id]);
 			res.render('categories/edit', {
 				page_title: "Edit Customers - Node.js",
-				data: result.rows[0]
+				data: result
 			});
 		}
 		catch (err) {

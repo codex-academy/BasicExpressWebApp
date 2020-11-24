@@ -3,9 +3,9 @@ module.exports = function CategoryService(pool){
         let categories = await pool.query('SELECT * from categories');
         return categories.rows;
     }
-    async function add(category){
+    async function add(description){
         let data = [
-            category.description
+            description
         ];
         let results = await pool.query(`insert into categories (description)  
             values ($1)
