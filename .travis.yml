@@ -4,7 +4,7 @@ env:
   - DATABASE_URL=postgresql://postgres@localhost:5432/my_products_tests
 
 node_js:  
-  - "8.9.4"
+  - "12"
 
 before_script:
   - psql -c 'create database  my_products_tests;' -U postgres
