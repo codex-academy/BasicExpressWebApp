@@ -12,8 +12,14 @@ const pool = new Pool({
 describe('The basic database web app', function(){
 
     beforeEach(async function(){
-        await pool.query("delete from products;");
-        await pool.query("delete from categories;");
+        try {
+            await pool.query("delete from products;");
+            await pool.query("delete from categories;");
+        } catch(err) {
+            console.log(err);
+            throw err;
+        }
+        
     });
 
     it('should able to add a category', async function(){
