@@ -1,13 +1,13 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Node.js CI
+name: NodeJS CI with PostgreSQL
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   build:
@@ -18,14 +18,30 @@ jobs:
       matrix:
         node-version: [12.x, 14.x, 16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
+    services:
+      postgres:
+        image: postgres:latest
+        env: 
+          POSTGRES_USER: coder
+          POSTGRES_PASSWORD: coder123
+          POSTGRES_DB: my_products
+        ports:
+        - 5432:5432
+        # Set health checks to wait until postgres has started
+        options: >-
+            --health-cmd pg_isready
+            --health-interval 10s
+            --health-timeout 5s
+            --health-retries 5
+        
     steps:
     - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+    - name: Install dependencies
+      run: npm install
+    - name: create postgresql tables
+      run: PGPASSWORD=coder123 psql -h localhost -U coder -d my_products -a -f ./tables.sql
+    - name: run tests with postgresql
+      run:
+        npm test
+      env:
+        DATABASE_URL: postgres://coder:coder123@localhost:5432/my_products
