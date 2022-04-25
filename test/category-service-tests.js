@@ -12,14 +12,14 @@ const pool = new Pool({
 describe('The basic database web app', function(){
 
     beforeEach(async function(){
-        try {
-            console.log('...');
-            await pool.query("delete from products;");
-            await pool.query("delete from categories;");
-        } catch(err) {
-            console.log(err);
-            throw err;
-        }
+//         try {
+//             console.log('...');
+//             await pool.query("delete from products;");
+//             await pool.query("delete from categories;");
+//         } catch(err) {
+//             console.log(err);
+//             throw err;
+//         }
         
     });
 
