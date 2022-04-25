@@ -23,7 +23,7 @@ jobs:
         image: postgres:latest
         env: 
           POSTGRES_USER: coder
-          POSTGRES_PASSWORD: coder_123
+          POSTGRES_PASSWORD: coder123
           POSTGRES_DB: my_products
         ports:
         - 5432:5432
@@ -39,7 +39,7 @@ jobs:
     - name: Install dependencies
       run: npm install
     - name: create postgresql tables
-      run: PGPASSWORD=gh123 psql -h localhost -U gh -d gh_actions_test -a -f ./tables.sql
+      run: PGPASSWORD=coder123 psql -h localhost -U coder -d gh_actions_test -a -f ./tables.sql
     - name: run tests with postgresql
       run:
         npm test
