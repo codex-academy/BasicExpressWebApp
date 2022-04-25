@@ -16,15 +16,15 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     services:
       postgres:
         image: postgres:latest
         env: 
-          POSTGRES_USER: gh
-          POSTGRES_PASSWORD: gh123
-          POSTGRES_DB: gh_actions_test
+          POSTGRES_USER: coder
+          POSTGRES_PASSWORD: coder_123
+          POSTGRES_DB: my_products
         ports:
         - 5432:5432
         # Set health checks to wait until postgres has started
@@ -39,9 +39,9 @@ jobs:
     - name: Install dependencies
       run: npm install
     - name: create postgresql tables
-      run: PGPASSWORD=gh123 psql -h localhost -U gh -d gh_actions_test -a -f ./sql/users.sql
+      run: PGPASSWORD=gh123 psql -h localhost -U gh -d gh_actions_test -a -f ./tables.sql
     - name: run tests with postgresql
       run:
         npm test
       env:
-        DATABASE_URL: postgres://gh:gh123@localhost:5432/gh_actions_test
+        DATABASE_URL: postgres://coder:coder123@localhost:5432/my_products
