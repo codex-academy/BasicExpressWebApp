@@ -9,7 +9,7 @@ module.exports = function CategoryRoutes(categoryService) {
 		try {
 			let categories = await categoryService.all();
 			res.render('categories/home', {
-				no_products: categories === 0,
+				no_products: categories.length === 0,
 				categories,
 			});
 		}
@@ -65,7 +65,7 @@ module.exports = function CategoryRoutes(categoryService) {
 		try {
 
 			console.log(JSON.stringify(req.headers));
-
+			console.log(req.params.id);
 			let data = req.body;
 			let id = req.params.id;
 			let description = req.body.description;

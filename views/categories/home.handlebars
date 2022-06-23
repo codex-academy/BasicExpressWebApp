@@ -2,11 +2,11 @@
 
 <a href="/categories/add">Add</a>
 
-{{#categories}}
+{{#each categories}}
   <h2>{{description}}</h2>
-  <a href="/categories/edit/{{id}}">Edit</a>
-  <a href="/categories/delete/{{id}}">Delete</a>
-{{/categories}}
+  <a href="/categories/edit/{{this.id}}">Edit</a>
+  <a href="/categories/delete/{{this.id}}">Delete</a>
+{{/each}}
 
 {{#no_products}}
   <p>No products available yet. Add some above.</p>

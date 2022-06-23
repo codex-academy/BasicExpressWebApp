@@ -13,25 +13,20 @@ const session = require('express-session');
 const flash = require('express-flash');
 const CategoryService = require('./services/category-service');
 const ProductService = require('./services/product-service');
-const pg = require("pg");
-const Pool = pg.Pool;
 
-// should we use a SSL connection
+const pgp = require('pg-promise')();
+
 let useSSL = false;
 let local = process.env.LOCAL || false;
 if (process.env.DATABASE_URL && !local){
     useSSL = true;
 }
-// which db connection to use
-const connectionString = process.env.DATABASE_URL || 'postgresql://localhost:5432/my_products';
+const connectionString = process.env.DATABASE_URL || 'postgresql://localhost:5432/my_products_list';
 
-const pool = new Pool({
-    connectionString,
-    ssl : useSSL
-  });
+  const db = pgp(connectionString);
 
-const categoryService = CategoryService(pool);
-const productService = ProductService(pool);
+const categoryService = CategoryService(db);
+const productService = ProductService(db);
 const categoryRoutes = Categories(categoryService);
 const categoryAPI = CategoriesAPI(categoryService);
 const productRoutes = Products(productService, categoryService);

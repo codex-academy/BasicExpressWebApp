@@ -1,38 +1,39 @@
-module.exports = function CategoryService(pool){
-    async function all(){
-        let categories = await pool.query('SELECT * from categories');
-        return categories.rows;
+module.exports = function CategoryService(db) {
+    async function all() {
+        let categories = await db.manyOrNone('SELECT * from categories');
+        return categories
     }
-    async function add(description){
-        let data = [
+    async function add(description) {
+        let dataModel = [
             description
         ];
-        let results = await pool.query(`insert into categories (description)  
+        let results = await db.any(`insert into categories (description)  
             values ($1)
-            returning id, description`, data);
-        return results.rows[0]
+            returning id, description`, dataModel);
+        return results;
     }
 
-    async function get(id){
-        let results = await pool.query('SELECT * FROM categories WHERE id = $1', [id]);
-        if (results.rows.length > 0) {
-            return results.rows[0];
+    async function get(id) {
+        let results = await db.any('SELECT * FROM categories WHERE id = $1', [id])
+        console.log(results.length > 0);
+        if (results.length > 0) {
+            return results
         }
         return null;
     }
 
-    async function update(category){
-        return pool.query('UPDATE categories SET description = $1 WHERE id = $2', [category.description, category.id]);
+    async function update(category) {
+        return await db.none('UPDATE categories SET description = $1 WHERE id = $2', [category.description, category.id]);
     }
 
-    async function deleteOne (id){
-        return pool.query('DELETE FROM categories WHERE id = $1', [id]);
+    async function deleteOne(id) {
+     return await db.none('DELETE FROM categories WHERE id = $1', [id])
     }
 
     return {
         add,
         all,
-        delete : deleteOne,
+        delete: deleteOne,
         get,
         update
     }

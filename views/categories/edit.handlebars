@@ -1,11 +1,14 @@
 <h1>Edit</h1>
 
-<form action="/categories/update/{{data.id}}" method="POST">
+
+{{#each data}}
+<form action="/categories/update/{{id}}" method="POST">
 
 	<div class="">
 		<label for="">Description</label>
-		<input type="text" name="description" value="{{data.description}}">
+		<input type="text" name="description" value="{{description}}">
 	</div>
 
 	<input type="submit">
 </form>
+{{/each}}
