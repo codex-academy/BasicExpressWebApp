@@ -21,6 +21,7 @@ module.exports = function (categoryService) {
 		}
 	};
 
+
 	async function add(req, res) {
 		try {
 			let input = req.body;

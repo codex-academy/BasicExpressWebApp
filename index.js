@@ -7,12 +7,15 @@ const Categories = require('./routes/categories');
 const CategoriesAPI = require('./api/categories-api');
 const Products = require('./routes/products');
 const ProductsAPI = require('./api/products-api');
+const UserAPI = require('./api/user-api');
+
 
 const app = express();
 const session = require('express-session');
 const flash = require('express-flash');
 const CategoryService = require('./services/category-service');
 const ProductService = require('./services/product-service');
+const UserService = require('./services/user-service');
 
 const pgp = require('pg-promise')();
 
@@ -27,10 +30,14 @@ const connectionString = process.env.DATABASE_URL || 'postgresql://localhost:543
 
 const categoryService = CategoryService(db);
 const productService = ProductService(db);
+const userService = UserService(db);
+
 const categoryRoutes = Categories(categoryService);
-const categoryAPI = CategoriesAPI(categoryService);
 const productRoutes = Products(productService, categoryService);
+
+const categoryAPI = CategoriesAPI(categoryService);
 const productsAPI = ProductsAPI(productService);
+const userAPI = UserAPI(userService);
 
 app.use(session({
   secret: 'keyboard cat',
@@ -80,6 +87,10 @@ app.get('/api/products', productsAPI.all);
 app.post('/api/products', productsAPI.add);
 
 app.get('/api/categories', categoryAPI.all);
+
+app.get('/api/users', userAPI.user);
+// add user/sign-up end-point
+
 
 app.use(errorHandler);
 

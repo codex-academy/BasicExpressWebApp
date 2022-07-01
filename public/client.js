@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
     function compileTemplate(selector) {
         let template = document.querySelector(selector);
@@ -27,38 +27,38 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function showCategoryDropdown() {
         axios
-        .get('/api/categories')
-        .then(function(results){
-            let response = results.data;
-            let data = response.data;
-            let html = categoryListTemplateInstance({
-                categoryList: data
+            .get('/api/categories')
+            .then(function (results) {
+                let response = results.data;
+                let data = response.data;
+                let html = categoryListTemplateInstance({
+                    categoryList: data
+                });
+                categoriesElem.innerHTML = html;
             });
-            categoriesElem.innerHTML = html;
-        });
     }
 
     function showProducts() {
         productService
-        .getProducts()
-        .then(function(results){
-            let response = results.data;
-            let data = response.data;
-            let html = productListTemplateInstance({
-                productList : data
+            .getProducts()
+            .then(function (results) {
+                let response = results.data;
+                let data = response.data;
+                let html = productListTemplateInstance({
+                    productList: data
+                });
+                let productTableHTML = html;
+                productsElem.innerHTML = productTableHTML;
             });
-            let productTableHTML = html;
-            productsElem.innerHTML = productTableHTML;
-        });
     }
-    
+
     function clearFields() {
         productNameElem.value = '';
         categoryIdElem.value = '';
-        priceElem.value= '';
+        priceElem.value = '';
     }
 
-    productBtn.addEventListener('click', function() {
+    productBtn.addEventListener('click', function () {
 
         let description = productNameElem.value;
         let category_id = categoryIdElem.value;
@@ -82,18 +82,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 description,
                 price
             })
-            .then(function() {
-                showProducts();
-                clearFields();
-            })
-            .catch(function(err){
-                alert(err);
-            });
+                .then(function () {
+                    showProducts();
+                    clearFields();
+                })
+                .catch(function (err) {
+                    alert(err);
+                });
         }
         else {
-            errorsElem.innerHTML = errorsTemplateInstance({errors});
+            errorsElem.innerHTML = errorsTemplateInstance({ errors });
         }
-        
+
     });
 
     showCategoryDropdown();
@@ -107,7 +107,7 @@ function editProduct(id) {
 }
 
 function ProductService() {
-    function getProducts(){
+    function getProducts() {
         return axios.get('/api/products')
     }
 

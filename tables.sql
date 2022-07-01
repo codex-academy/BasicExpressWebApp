@@ -11,5 +11,13 @@ create table products (
 	foreign key (category_id) references categories(id) ON DELETE CASCADE
 );
 
+create table users (
+	id serial not null primary key,
+	username text not null,
+	password text not null
+	-- createdAt timestamp not null,
+	-- updatedAt timestamp not null 
+);
+
 alter table categories add constraint uniq_desc_constraint unique(description);
 

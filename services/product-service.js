@@ -16,39 +16,38 @@ module.exports = function ProductService(db) {
                     values ($1, $2, $3)`, data)
 
     }
-        async function get(id) {
-            let productResult = await db.one('SELECT * FROM products WHERE id = $1', [id])
-            return productResult;
+    async function get(id) {
+        let productResult = await db.one('SELECT * FROM products WHERE id = $1', [id])
+        return productResult;
+    }
 
-        }
+    async function update(product) {
+        var data = [
+            product.category_id,
+            product.description,
+            product.price,
+            product.id
+        ];
 
-        async function update(product) {
-            var data = [
-                product.category_id,
-                product.description,
-                product.price,
-                product.id
-            ];
-
-            let updateQuery = `UPDATE products 
+        let updateQuery = `UPDATE products 
             SET category_id = $1, 
                 description = $2, 
                 price = $3 
             WHERE id = $4`;
 
-            return await db.any(updateQuery, data)
+        return await db.any(updateQuery, data)
 
-        }
-
-        async function deleteById(id) {
-            return await db.result('DELETE FROM products WHERE id = $1', [id])
-        }
-
-        return {
-            all,
-            create,
-            delete: deleteById,
-            get,
-            update
-        }
     }
+
+    async function deleteById(id) {
+        return await db.result('DELETE FROM products WHERE id = $1', [id])
+    }
+
+    return {
+        all,
+        create,
+        delete: deleteById,
+        get,
+        update
+    }
+}

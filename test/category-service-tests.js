@@ -3,7 +3,7 @@ const CategoryService = require('../services/category-service');
 const pg = require("pg");
 const Pool = pg.Pool;
 
-const  = process.env.DATABASE_URL || 'postgresql://localhost:5432/my_products_tests';
+const connectionString  = process.env.DATABASE_URL || 'postgresql://localhost:5432/my_products_tests';
 
 const pool = new Pool({
     connectionString
