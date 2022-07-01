@@ -8,10 +8,6 @@ variables:
   POSTGRES_USER: codex-coder
   POSTGRES_PASSWORD: "pg123"
   
-cache: 
-  path: 
-    - node_modules/
-
 postgresql:
   script:
     - npm test
