@@ -13,11 +13,14 @@ create table products (
 
 create table users (
 	id serial not null primary key,
-	username text not null,
-	password text not null
-	-- createdAt timestamp not null,
-	-- updatedAt timestamp not null 
+	username text unique not null,
+	password text unique not null,
+	createdAt text NOT NULL,
+	active boolean not null DEFAULT false
 );
 
+
+
 alter table categories add constraint uniq_desc_constraint unique(description);
+-- alter table users add createdAt DATE NOT NULL DEFAULT CURRENT_DATE unique(description);
 

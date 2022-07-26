@@ -10,16 +10,20 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.9.2",
+    "dayjs": "^1.11.3",
     "express": "^4.10.2",
     "express-flash": "0.0.2",
     "express-handlebars": "^3.0.0",
     "express-myconnection": "^1.0.4",
     "express-session": "^1.15.6",
+    "lodash": "^4.17.21",
     "mysql": "^2.5.3",
     "pg": "^7.4.3",
     "pg-promise": "^10.11.1",
-    "prompt": "^0.2.14"
+    "prompt": "^0.2.14",
+    "type": "module"
   },
   "devDependencies": {
     "mocha": "^5.2.0",

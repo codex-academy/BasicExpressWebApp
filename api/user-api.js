@@ -1,21 +1,23 @@
+const { as } = require("pg-promise");
+
 module.exports = function (userService) {
 
-	async function user(req, res) {
-		try {
+    async function user(req, res) {
+        try {
             let id = req.body.id;
-			let users = await userService.getUserName();
-			res.json({
-				status: 'success',
-				data: users
-			});
-		}
-		catch (err) {
-			res.json({
-				status: "error",
-				error: err.stack
-			});
-		}
-	};
+            let users = await userService.getUserName();
+            res.json({
+                status: 'success',
+                data: users
+            });
+        }
+        catch (err) {
+            res.json({
+                status: "error",
+                error: err.stack
+            });
+        }
+    };
 
     const validatePassword = async (req, res) => {
         try {
@@ -38,13 +40,23 @@ module.exports = function (userService) {
                 error: err.stack
             })
         }
-    } 
+    }
 
     const signUp = async (req, res) => {
         try {
             let username = req.body.username;
             let password = req.body.password;
-
+            let storeData = await userService.signUp(username, password);
+            if (storeData == true) {
+                res.json({
+                    status: 'success',
+                    data: "user sign-up," + username
+                });
+            }
+            res.json({
+                status: "error",
+                data: "invalid username or password fomat"
+            })
             /*
             - set-up salt
             - hash the password
@@ -64,10 +76,28 @@ module.exports = function (userService) {
         }
     }
 
+    const login = async (req, res) => {
+      try {
+        let username = req.body.username;
+        let password = req.body.password;
+        let user = await userService.login(username, password);
+        res.json({
+            status: "sucess",
+            data: user
+        })
+      } catch (error) {
+          res.json({
+              status: "error",
+              error: error.stack
+          })
+      }
+    }
+
     return {
         user,
         validatePassword,
-        signUp
+        signUp,
+        login
     }
-    
+
 }

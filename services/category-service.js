@@ -14,7 +14,7 @@ module.exports = function CategoryService(db) {
     }
 
     async function get(id) {
-        let results = await db.any('SELECT * FROM categories WHERE id = $1', [id])
+        let results = await db.manyOrNone('SELECT * FROM categories WHERE id = $1', [id])
         console.log(results.length > 0);
         if (results.length > 0) {
             return results

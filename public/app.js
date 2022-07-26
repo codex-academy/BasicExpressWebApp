@@ -5,5 +5,4 @@ document.addEventListener('DOMContentLoaded', function(){
             messageElem.innerHTML = '';
         }, 3000);
     }
-
 });

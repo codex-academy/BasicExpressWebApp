@@ -9,7 +9,6 @@ const Products = require('./routes/products');
 const ProductsAPI = require('./api/products-api');
 const UserAPI = require('./api/user-api');
 
-
 const app = express();
 const session = require('express-session');
 const flash = require('express-flash');
@@ -26,7 +25,7 @@ if (process.env.DATABASE_URL && !local){
 }
 const connectionString = process.env.DATABASE_URL || 'postgresql://localhost:5432/my_products_list';
 
-  const db = pgp(connectionString);
+const db = pgp(connectionString);
 
 const categoryService = CategoryService(db);
 const productService = ProductService(db);
@@ -89,10 +88,11 @@ app.post('/api/products', productsAPI.add);
 app.get('/api/categories', categoryAPI.all);
 
 app.get('/api/users', userAPI.user);
-// add user/sign-up end-point
-
+app.post('/api/signUp', userAPI.signUp);
+app.post('/api/login', userAPI.login);
 
 app.use(errorHandler);
+
 
 //configure the port number using and environment number
 var portNumber = process.env.PORT || 3000;
