@@ -7,19 +7,16 @@ module.exports = function CategoryService(db) {
         let dataModel = [
             description
         ];
-        let results = await db.any(`insert into categories (description)  
+        let results = await db.oneOrNone(`insert into categories (description)  
             values ($1)
             returning id, description`, dataModel);
         return results;
     }
 
     async function get(id) {
-        let results = await db.manyOrNone('SELECT * FROM categories WHERE id = $1', [id])
-        console.log(results.length > 0);
-        if (results.length > 0) {
-            return results
-        }
-        return null;
+        let results = await db.oneOrNone('SELECT * FROM categories WHERE id = $1', [id])
+        console.log(results);
+        return results;
     }
 
     async function update(category) {
@@ -27,7 +24,7 @@ module.exports = function CategoryService(db) {
     }
 
     async function deleteOne(id) {
-     return await db.none('DELETE FROM categories WHERE id = $1', [id])
+        return await db.none('DELETE FROM categories WHERE id = $1', [id])
     }
 
     return {
