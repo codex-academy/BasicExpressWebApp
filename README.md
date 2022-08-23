@@ -62,6 +62,19 @@ Type in `\q` to exit *psql* as the *postgres* user.
 
 Connect to your database using: `psql -d my_products`
 
+## Database setup on Windows
+
+If you are using windows you can create the database and user from within `psql`.
+
+
+```
+create database my_products;
+create role coder login password 'coder123';
+grant all privileges on database my_products to coder;
+```
+
+## Create the database tables
+
 Execute these SQL commands to create the `categories` and `products` table in your database. 
 
 You can copy and paste the script below into psql or your can run the database script inside psql using `\i database.sql`
