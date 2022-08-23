@@ -24,7 +24,7 @@ You can use apt-get to install all of the above.
 
 ## Node JS
 
-You need NodeJs version 8+  install it using [nvm](https://github.com/creationix/nvm) - `nvm install 8`
+You need NodeJs version 14+  install it using [nvm](https://github.com/creationix/nvm) - `nvm install 14`
 
 ## Install PostgreSQL
 
