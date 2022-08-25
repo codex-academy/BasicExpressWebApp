@@ -1,5 +1,4 @@
 const assert = require("assert");
-const { log } = require("console");
 const CategoryService = require("../services/category-service");
 const ProductService = require("../services/product-service");
 const pgp = require("pg-promise")();
