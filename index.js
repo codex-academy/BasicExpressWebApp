@@ -17,7 +17,7 @@ const ProductService = require('./services/product-service');
 const UserService = require('./services/user-service');
 const pgp = require('pg-promise')();
 
-const DATABASE_URL= process.env.DATABASE_URL || "postgresql://localhost:5432/my_products_list";
+const DATABASE_URL= process.env.DATABASE_URL || "postgresql://postgres:nimda@localhost:5432/my_products_list";
 
 const config = { 
 	connectionString : DATABASE_URL
