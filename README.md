@@ -191,3 +191,4 @@ The API end point is running at http://localhost:3000/api/products.
 The `client.js` file in the public folder is using the API. It calls the API and renders the resulting JSON data to the screen using HandlebarsJS.
 
 Go to http://localhost:3000/client.html to see the screen using the API in action. It uses [axios](https://github.com/axios/axios) to call the API endpoints using HTTP.
+
