@@ -15,7 +15,7 @@ module.exports = function CategoryService(db) {
 
     async function get(id) {
         let results = await db.oneOrNone('SELECT * FROM categories WHERE id = $1', [id])
-        console.log(results);
+        // console.log(results);
         return results;
     }
 
