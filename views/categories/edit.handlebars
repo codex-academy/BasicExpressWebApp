@@ -1,7 +1,9 @@
 <h1>Edit</h1>
 
 
-{{#each data}}
+{{!-- {{#each data}}
+I think this was working for pg but now the query is using pg-promise
+which is not returning a list with an object, but returning an object
 <form action="/categories/update/{{id}}" method="POST">
 
 	<div class="">
@@ -11,4 +13,15 @@
 
 	<input type="submit">
 </form>
-{{/each}}
+{{/each}} --}}
+
+
+<form action="/categories/update/{{data.id}}" method="POST">
+
+	<div class="">
+		<label for="">Description</label>
+		<input type="text" name="description" value="{{data.description}}">
+	</div>
+
+	<input type="submit">
+</form>
