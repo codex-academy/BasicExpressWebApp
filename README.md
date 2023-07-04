@@ -135,21 +135,37 @@ The web pages use [handlebar.js templates](http://handlebarsjs.com/)
 
 ## Deployment
 
-To deploy the application to Heroku install the Heroku command line utility and create a Heroku account.
+To deploy the application to Render, create an account here [Render.com](https://dashboard.render.com/login) 
+ 
+ Select `Docs` on navbar. Choose node (Express)
+ as you will deploy an express application. 
 
-Initialize your application as a Heroku app by using: `heroku create`
+ Thing to configure on your `package.json` file on `Scripts`. 
+ * start - `node index.js`
+ 
+ <!-- Initialize your application as a Heroku app by using: `heroku create` -->
 
-Create a PostgreSQL database on Heroku for you app using this command: 
+Create a PostgreSQL database on Render for you app: 
 
-```
-heroku addons:create heroku-postgresql:hobby-dev
-```
+* in dashboard, click ` New ` button. 
+* Choose postgresql. 
+* Folow the steps, fill all the fiels accordingly. 
 
-See more info about the created database using: `heroku pg:info`
+<!-- heroku addons:create heroku-postgresql:hobby-dev -->
 
-To connect to the PostgreSQL database on Heroku by runnning: 
+See more info about creating database on Render: [Postgresql with Render](https://render.com/docs/databases#creating-a-database) 
 
-```heroku pg:psql``` 
+To connect to the PostgreSQL database outside Render:
+ [Postgresql outside render](https://render.com/docs/databases#connecting-from-outside-render)
+
+ * Let's copy `psql command` link. Past the link in your terminal. 
+ * Create a `Schema`  [Postgresql Schema](https://www.postgresqltutorial.com/postgresql-administration/postgresql-schema/) 
+
+ * Create all your tables inside your schema as shown in the link. `Greetings` `Registration Numbers`
+
+* Connect to your database on [Render internal connection](https://www.postgresqltutorial.com/postgresql-administration/postgresql-schema/)
+
+<!-- ```heroku pg:psql``` 
 
 Create the `categories` and `products` tables in the Heroku remote database by runnning the script above.
 
@@ -168,7 +184,7 @@ heroku open
 To see the log files to look for deployment issue use: 
 
 ```
-heroku logs
+heroku logs -->
 ```
 
 Note that the application is using two environment variables to be able to deploy to Heroku 
