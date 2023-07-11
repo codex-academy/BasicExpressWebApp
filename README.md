@@ -137,55 +137,49 @@ The web pages use [handlebar.js templates](http://handlebarsjs.com/)
 
 To deploy the application to Render, create an account here [Render.com](https://dashboard.render.com/login) 
  
- Select `Docs` on navbar. Choose node (Express)
- as you will deploy an express application. 
+Select `Docs` on the navbar. 
+ * Next choose node (Express) as you will deploy an express application. 
 
- Thing to configure on your `package.json` file on `Scripts`. 
- * start - `node index.js`
- 
- <!-- Initialize your application as a Heroku app by using: `heroku create` -->
+ Add a start script to your `package.json` file in the `scripts` section.
+
+Add a section like this
+
+ ```
+ "start" : "node index.js"
+ ```
+
+After adding this is should look like:
+
+```
+script : {
+    // other scripts
+“Start” : “node index.js” 
+}
+```
+
+
 
 Create a PostgreSQL database on Render for you app: 
 
-* in dashboard, click ` New ` button. 
+* In the dashboard, click ` New ` button. 
 * Choose postgresql. 
-* Folow the steps, fill all the fiels accordingly. 
+* Follow the steps, fill in all the fields accordingly. 
 
-<!-- heroku addons:create heroku-postgresql:hobby-dev -->
 
-See more info about creating database on Render: [Postgresql with Render](https://render.com/docs/databases#creating-a-database) 
+See more info about creating a database on Render: [PostgreSQL with Render](https://render.com/docs/databases#creating-a-database) 
 
 To connect to the PostgreSQL database outside Render:
  [Postgresql outside render](https://render.com/docs/databases#connecting-from-outside-render)
 
- * Let's copy `psql command` link. Past the link in your terminal. 
- * Create a `Schema`  [Postgresql Schema](https://www.postgresqltutorial.com/postgresql-administration/postgresql-schema/) 
+ * Let's copy the `psql command` link. 
+ * Past the link in your terminal. 
+ * Create a `Schema`  [PostgreSQL Schema](https://www.postgresqltutorial.com/postgresql-administration/postgresql-schema/) 
 
  * Create all your tables inside your schema as shown in the link. `Greetings` `Registration Numbers`
 
 * Connect to your database on [Render internal connection](https://www.postgresqltutorial.com/postgresql-administration/postgresql-schema/)
 
-<!-- ```heroku pg:psql``` 
 
-Create the `categories` and `products` tables in the Heroku remote database by runnning the script above.
-
-To deploy your app run this command: 
-
-```
-git push heroku master
-```
-
-Open the deployed app in a browser running this command : 
-
-```
-heroku open
-```
-
-To see the log files to look for deployment issue use: 
-
-```
-heroku logs -->
-```
 
 Note that the application is using two environment variables to be able to deploy to Heroku 
 
