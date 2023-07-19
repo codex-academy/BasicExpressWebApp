@@ -1,6 +1,8 @@
 # Introduction
 
-[![Build Status](https://travis-ci.org/codex-academy/BasicExpressWebApp.svg?branch=master)](https://travis-ci.org/codex-academy/BasicExpressWebApp)
+<!-- [![Build Status](https://travis-ci.org/codex-academy/BasicExpressWebApp.svg?branch=master)](https://travis-ci.org/codex-academy/BasicExpressWebApp) -->
+
+[![NodeJS CI with PostgreSQL - now](https://github.com/codex-academy/BasicExpressWebApp/actions/workflows/node-pgsql.js.yml/badge.svg)](https://github.com/codex-academy/BasicExpressWebApp/actions/workflows/node-pgsql.js.yml)
 
 This is an example that shows the basics of how to create CRUD screens with NodeJS using ExpressJS and MySQL. CRUD stands for Create, Read, Update and Delete - this is the bread and butter of web application development.
 
