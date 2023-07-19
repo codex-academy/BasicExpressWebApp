@@ -3,21 +3,22 @@ module.exports = function ProductService(db) {
         const query = `select p.id, p.description, p.price, c.id as category_id, 
             c.description as category_description from products p
             join categories c on c.id = p.category_id`;
-        let results = await db.manyOrNone(query)
+        let results = await db.manyOrNone(query);
+
         return results;
     }
     async function create(product) {
         let data = [
-            product.category_id,
+            product.id,
             product.description,
             product.price
         ];
         return await db.none(`insert into products(category_id, description, price) 
-                    values ($1, $2, $3)`, data)
+                    values ($1, $2, $3)`, data);
 
     }
     async function get(id) {
-        let productResult = await db.oneOrNone('SELECT * FROM products WHERE id = $1', [id])
+        let productResult = await db.oneOrNone("SELECT * FROM products WHERE id = $1", [id]);
         return productResult;
     }
 
@@ -35,12 +36,12 @@ module.exports = function ProductService(db) {
                 price = $3 
             WHERE id = $4`;
 
-        return await db.none(updateQuery, data)
+        return await db.none(updateQuery, data);
 
     }
 
     async function deleteById(id) {
-        return await db.none('DELETE FROM products WHERE id = $1', [id])
+        return await db.none("DELETE FROM products WHERE id = $1", [id]);
     }
 
     return {
@@ -49,5 +50,5 @@ module.exports = function ProductService(db) {
         delete: deleteById,
         get,
         update
-    }
-}
+    };
+};
