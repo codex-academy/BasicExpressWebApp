@@ -24,7 +24,7 @@ module.exports = function CategoryService(db) {
     }
 
     async function deleteOne(id) {
-        return await db.none("DELETE FROM categories WHERE id = $1", [id])
+        return await db.none("DELETE FROM categories WHERE id = $1", [id]);
     }
 
     return {

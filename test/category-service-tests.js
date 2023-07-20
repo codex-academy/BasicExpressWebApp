@@ -60,18 +60,31 @@ describe("The basic database web app", function () {
     });
 
     it("should able to delete a category", async function () {
-        // assemble
-        let categoryService = CategoryService(db);
-        let category = await categoryService.add({
-            description: "Diary"
-        });
+        try {
 
-        // act
-        await categoryService.delete(category.id);
+            // assemble
+            let categoryService = CategoryService(db);
+            let category = await categoryService.add({
+                description: "Diary"
+            });
 
-        // assert
-        let updateCategory = await categoryService.get(category.id);
-        assert.equal(null, updateCategory);
+            const productList = await categoryService.all();
+
+            // check added 
+            assert.deepEqual([{
+                description: "{\"description\":\"Diary\"}",
+                id: 1
+            }], productList);
+
+            // act
+            await categoryService.delete(category.id);
+            const productResult = await categoryService.all();
+
+            // assert
+            assert.deepEqual([], productResult);
+        } catch (err) {
+            console.log(err);
+        }
     });
 
     it("should able to add a products", async function () {
