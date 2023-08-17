@@ -141,10 +141,10 @@ To deploy the application to Render, create an account here [Render.com](https:/
  
 Select `Docs` on the navbar. 
  * Next choose node (Express) as you will deploy an express application. 
+ 
+Add a start script to your `package.json` file in the `scripts` section.
 
- Add a start script to your `package.json` file in the `scripts` section.
-
-Add a section like this
+Add a section like this:
 
  ```
  "start" : "node index.js"
@@ -154,8 +154,8 @@ After adding this is should look like:
 
 ```
 script : {
-    // other scripts
-“start” : “node index.js” 
+    	// other scripts
+	“start” : “node index.js” 
 }
 ```
 
@@ -204,7 +204,7 @@ res.json({
 })
 ```
 
-The API end point is running at http://localhost:3000/api/products.
+The API end point is running at `http://localhost:3000/api/products.`
 
 The `client.js` file in the public folder is using the API. It calls the API and renders the resulting JSON data to the screen using HandlebarsJS.
 
