@@ -155,7 +155,7 @@ After adding this is should look like:
 ```
 script : {
     // other scripts
-“Start” : “node index.js” 
+“start” : “node index.js” 
 }
 ```
 
