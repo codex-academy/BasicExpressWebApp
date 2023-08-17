@@ -173,15 +173,11 @@ See more info about creating a database on Render: [PostgreSQL with Render](http
 To connect to the PostgreSQL database outside Render:
  [Postgresql outside render](https://render.com/docs/databases#connecting-from-outside-render)
 
- * Let's copy the `psql command` link. 
- * Past the link in your terminal. 
- * Create a `Schema`  [PostgreSQL Schema](https://www.postgresqltutorial.com/postgresql-administration/postgresql-schema/) 
-
- * Create all your tables inside your schema as shown in the link. `Greetings` `Registration Numbers`
-
-* Connect to your database on [Render internal connection](https://www.postgresqltutorial.com/postgresql-administration/postgresql-schema/)
-
-
+ * Let's copy the `psql URL` link from render.com. 
+ * Paste the link in your terminal using `psql`
+ * Create a `schema`  [PostgreSQL Schema](https://www.postgresqltutorial.com/postgresql-administration/postgresql-schema/) 
+ * Create all your tables inside your schema as shown in the link. Use schema like - `Greetings` or `RegistrationNumbers` for example.
+ * Connect to your database on [Render internal connection](https://www.postgresqltutorial.com/postgresql-administration/postgresql-schema/) - you will need to setup an environment variable in render called `DATABASE_URL` set it to the `psql URL` of the database that you created in render.
 
 Note that the application is using two environment variables to be able to deploy to Heroku 
 
