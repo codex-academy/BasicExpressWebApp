@@ -159,30 +159,40 @@ script : {
 }
 ```
 
-
-
 Create a PostgreSQL database on Render for you app: 
 
 * In the dashboard, click ` New ` button. 
 * Choose postgresql. 
 * Follow the steps, fill in all the fields accordingly. 
 
-
 See more info about creating a database on Render: [PostgreSQL with Render](https://render.com/docs/databases#creating-a-database) 
 
-To connect to the PostgreSQL database outside Render:
- [Postgresql outside render](https://render.com/docs/databases#connecting-from-outside-render)
+To connect to the Render PostgreSQL database you have just created there are 2 options under `Connections`:
 
- * Let's copy the `psql URL` link from render.com. 
- * Paste the link in your terminal using `psql`
- * Create a `schema`  [PostgreSQL Schema](https://www.postgresqltutorial.com/postgresql-administration/postgresql-schema/) 
- * Create all your tables inside your schema as shown in the link. Use schema like - `Greetings` or `RegistrationNumbers` for example.
- * Connect to your database on [Render internal connection](https://www.postgresqltutorial.com/postgresql-administration/postgresql-schema/) - you will need to setup an environment variable in render called `DATABASE_URL` set it to the `psql URL` of the database that you created in render.
+* **Internal Database URL** - use this from within render
+* **External Database URL** - use this if you connect to the render database from you PC using `psql`
+
+Connect to the remote database using `psql` using the **External Database URL** using `psql <External Database URL>`
+
+Create a schema called `CRUD` using this command:
+
+```
+create schema CRUD;
+```
+   
+> You can read me about PostgreSQL Schemas [here](https://www.postgresqltutorial.com/postgresql-administration/postgresql-schema/).
+ 
+Setup an environment variable in render called `DATABASE_URL`, to allow your app to link to the database on Render.
+
+Do this:
+
+* Inside of you Render app click on `Environment` on the left.
+* Set it to the `psql URL` of the database that you created in render.
 
 Note that the application is using two environment variables to be able to deploy to Heroku 
 
-* `process.env.PORT`
-* `process.env.DATABASE_URL`
+* The PORT number of the app - `process.env.PORT` (Render will set this)
+* And the DATABASE_URL the app should use - `process.env.DATABASE_URL` (You need to set this).
 
 ## API basics
 
